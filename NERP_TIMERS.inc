@@ -14,15 +14,82 @@
  *                   *
  */
 
+#define task%0[%1](%2) %0(%2);public %0(%2)
+#define NERP_TIMER(%1,%2,%3$%4); if(timerid==%4){printf("\tUcitavanje timera: "%1"\t\nTick rate: %i", GetServerTickRate());CallLocalFunction(%1,"");SetTimer(%1,%2,%3);return 1;}
 
-#include <YSI\y_timers>
-
-stock KreirajTajmere()
+KreirajTajmere(timerid);public KreirajTajmere(timerid)
 {
-	print("Timeri kreirani.");
+	#if NERP_LOAD_TIMERS == 1
+	NERP_TIMER("T_Spectator"					,3000			,true$1);
+	NERP_TIMER("T_EventTimeR"					,1050			,true$2);
+	NERP_TIMER("T_PetnesTMinutesTimer"			,900000			,true$3);
+	NERP_TIMER("T_OcistiChatNeulogovanim"		,100			,true$4);
+	NERP_TIMER("T_FiveMinutesTimer"				,420000			,true$5);
+	NERP_TIMER("T_SyncTime"						,60000			,true$6);
+	NERP_TIMER("MISSION"						,3600000		,true$7);
+	NERP_TIMER("NeaktivnostDodavanje2"			,3600000		,true$8);
 
-	SendRconCommand("password 0");
+	NERP_TIMER("ServerTimer"					,1000			,true$9);
+
+	NERP_TIMER("VehRespawntask"					,2000000		,true$10);
+	NERP_TIMER("TaskSendMSG"					,300000			,true$11);
+	NERP_TIMER("TaskSendMSG2"					,600000			,true$12);
+	NERP_TIMER("TaskSendMSG3"					,400000			,true$13);
+	NERP_TIMER("TaskSendMSG4"					,1200000		,true$14);
+	NERP_TIMER("TaskSendMSG5"					,195000			,true$15);
+	NERP_TIMER("ObavjestiIgraceTask"			,1800000		,true$16);
+	NERP_TIMER("SwapBarCol"						,1000			,true$17);
+	NERP_TIMER("TaskAktivirajPoklone"			,100000			,true$18);
+	NERP_TIMER("LoadingTimerTacketask"			,500			,true$19);
+	NERP_TIMER("FixDealerstask"					,1200000		,true$20);
+	NERP_TIMER("ZOMBIE_UPDATE"					,500			,true$21);
+	NERP_TIMER("ZOMBIE_SPAWN"					,4000			,true$22);
+	NERP_TIMER("ZOMBIE_POS"						,10000			,true$23);
+	NERP_TIMER("ZOMBIE_GAME"					,800			,true$24);
+
+	NERP_TIMER("BrziTajmerTask"					,150			,true$25);
+
+	NERP_TIMER("RDYBLINKtimer"					,500			,true$26);
+	NERP_TIMER("betaprovera"					,900000			,true$27);
+	NERP_TIMER("NewHappyJob"					,3600000		,true$28);
+	NERP_TIMER("PonovnoUcitavanjeTela"			,600000			,true$29);
+	NERP_TIMER("PetSec"							,5000			,true$30);
+	NERP_TIMER("PolaMinuteTimer"				,30000			,true$31);
+	//NERP_TIMER("LMAOOOOO"						,3000			,true$32);
+	NERP_TIMER("DostavaVozila"					,625726			,true$33);
+	
+	NERP_TIMER("vrijeme"						,1500			,true$34);
+	NERP_TIMER("SetPlayerTitle"					,5000			,true$35);
+	NERP_TIMER("updateMoneyBar"					,2000			,true$36);
+	NERP_TIMER("UpdateOdjecaModels"				,3000			,true$37);
+	NERP_TIMER("InternetConnectionCheck"		,2500			,true$38);
+	
+	#endif
 	return 1;
+}
+
+
+task vrijeme[1500]() 
+{
+	print("Timer 'vrijeme' was called.");
+	new tmphour,
+		tmpminute,
+		tmpsecond,
+		year,
+		month,
+		day,
+		stringicc[ 20 ],stringicc1[ 30 ];
+
+    getdate( year, month, day );
+	gettimeEx( tmphour, tmpminute, tmpsecond );
+	FixHour( tmphour );
+	tmphour = shifthour;
+
+    format( stringicc, sizeof( stringicc ), "~w~%s%d~y~:~w~%s%d", (tmphour < 10) ? ("0") : (""), tmphour, (tmpminute < 10) ? ("0") : (""), tmpminute);
+	TextDrawSetString( TDEditor_TD[35], stringicc );
+ 	format( stringicc1, sizeof( stringicc1 ), "~w~%d~r~/~w~%d~r~/~w~%d", day, month, year );
+    TextDrawSetString( TDEditor_TD[36], stringicc1 );
+    return 1;
 }
 
 task T_Spectator[2000]()
@@ -117,7 +184,9 @@ task TaskSendMSG5[195000]()
 
 task ObavjestiIgraceTask[1800000]()
 {
+	#if NERP_DISCORD_BOT == 1
 	ObavjestiIgrace();
+	#endif
 	return 1;
 }
 
@@ -145,7 +214,9 @@ task FixDealerstask[1200000]()
 	return 1;
 }
 
-task ZOMBIE_UPDATE[100]()
+#if NERP_ZOMBIE_SISTEM == 1
+
+task ZOMBIE_UPDATE[500]()
 {
 	zombieUpdate();
 	return 1;
@@ -163,13 +234,15 @@ task ZOMBIE_POS[10000]()
 	return 1;
 }
 
-task ZOMBIE_GAME[500]()
+task ZOMBIE_GAME[100]()
 {
 	zombieGame();
 	return 1;
 }
 
-task BrziTajmerTask[100]()
+#endif
+
+task BrziTajmerTask[200]()
 {
 	BrziTajmer();
 	return 1;
@@ -297,9 +370,11 @@ task srwname[1000]()
 		case 5: {
 			SetGameModeText( "NE:RP - Version: beta" );
 		}
+		#if NERP_ZIMSKI_MOD == 1
 		case 6: {
 			SetGameModeText("NE:RP - Winter Edition");
 		}
+		#endif
 	}
 	return 1;
 }
@@ -326,4 +401,349 @@ task DostavaVozila[600000]()
 	}
 	//konkursi
 	return 0;
+}
+
+task SetPlayerTitle[2000]()
+{
+	print("Timer 'SetPlayerTitle' was called.");
+	for(new playerid; playerid < MAX_PLAYERS; playerid++)
+	{
+		if(!IsPlayerConnected(playerid)) continue;
+		if( NaDmEventu[ playerid ] == false && WARPInfo[ playerid ][ WARIgrac ] == -1 && Ranjen[playerid] == 0 )
+		{
+			if( PlayerInfo[playerid][xAdmin] == 0 && \
+				PlayerInfo[playerid][xHelper] == 0 && \
+				PlayerInfo[playerid][xClan] == 0 && \
+				PlayerInfo[playerid][xLevel] >= 5 && \
+				PlayerInfo[playerid][xProperty][0] == -1 &&\
+				PlayerInfo[playerid][xProperty][1] == -1 &&\
+				PlayerInfo[playerid][xProperty][2] == -1
+			)
+			{
+				SetPlayerChatBubble( playerid, "[ BESKUCNIK ]", PLAVA, 40.0, 10000);
+			}
+			////////////////////////////////////////////////////////////////////
+	        else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 1 && AdminDuty[playerid])
+			{
+				SetPlayerChatBubble( playerid, "[ SKRIPTER ]\n"SERVERBOJA_AQUA"Administrator\n\n\n", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 1 && !AdminDuty[playerid])
+			{
+				SetPlayerChatBubble( playerid, "[ SKRIPTER ]\n"SERVERBOJA_AQUA"Administrator\n\n\n", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 2 )
+			{
+				SetPlayerChatBubble( playerid, "[ DIZAJNER ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xVIPLevel ] == 5  )
+			{
+				SetPlayerChatBubble( playerid, "[ MASTER DONATOR ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 1 && AdminDuty[playerid])
+			{
+				SetPlayerChatBubble( playerid, "[ SKRIPTER ]\n"SERVERBOJA_AQUA"Administrator\n\n\n", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 1 && !AdminDuty[playerid])
+			{
+				SetPlayerChatBubble( playerid, "[ SKRIPTER ]\n"SERVERBOJA_AQUA"Administrator\n\n\n", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 3 )
+			{
+				SetPlayerChatBubble( playerid, "[ MAPPER ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xSkriptaRank ] == 6 )
+			{
+				SetPlayerChatBubble( playerid, "[ SU-VLASNIK ]", tdboja, 40.0, 10000);
+			}
+			////////////////////////////////////////////////////////////////////
+			else if( PlayerInfo[ playerid ][ xAdmin ] >= 1 && PlayerInfo[ playerid ][ xAdmin ] <= 5 )
+			{
+				SetPlayerChatBubble( playerid, "[ ADMIN ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xAdmin ] == 6 )
+			{
+				SetPlayerChatBubble( playerid, "[ HEAD ADMIN ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xAdmin ] == 1337 )
+			{
+				SetPlayerChatBubble( playerid, "[ DIREKTOR ]", tdboja, 40.0, 10000);
+			}
+			
+	        else if( PlayerInfo[ playerid ][ xAdmin ] == 1339)
+			{
+				SetPlayerChatBubble( playerid, "[ VLASNIK ]", tdboja, 40.0, 10000);
+			}
+			////////////////////////////////////////////////////////////////////
+			else if( PlayerInfo[ playerid ][ xHelper ] >= 1 && PlayerInfo[ playerid ][ xHelper ] <= 3)
+			{
+				SetPlayerChatBubble( playerid, "[ GameMaster ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xHelper ] == 4 )
+			{
+				SetPlayerChatBubble( playerid, "[ Vodja GameMastera ]", tdboja, 40.0, 10000);
+			}
+
+			////////////////////////////////////////////////////////////////////
+			else if( PlayerInfo[ playerid ][ xVIPLevel ] >= 1 && PlayerInfo[ playerid ][ xWanted ] == 0 )
+			{
+			
+				SetPlayerChatBubble( playerid, "[ Prime Member ]", tdboja, 40.0, 10000);
+				
+				/*if( PlayerInfo[ playerid ][ xVIPLevel ] >= 5 && !PlayerInfo[ playerid ][ xDBO ] )
+				{
+	   				SetPlayerColor( playerid, 0xB7B700FF );
+				}*/
+			}
+			////////////////////////////////////////////////////////////////////
+			else if( PlayerInfo[ playerid ][ xPromoter ] == 1 )
+			{
+				SetPlayerChatBubble( playerid, "[ Promoter ]", tdboja, 40.0, 10000);
+			}
+			else if( PlayerInfo[ playerid ][ xLevel ] == 1  )
+			{
+				SetPlayerChatBubble( playerid, "[ Pocetnik ]", PLAVA, 40.0, 10000);
+			}
+		}
+	}
+	return 1;
+}
+
+NERP_ONPLAYERUPDATE(playerid);
+public NERP_ONPLAYERUPDATE(playerid)
+{
+	if(GetServerTickRate() < 130) print("Timer 'NERP_ONPLAYERUPDATE' was called.");
+	CallLocalFunction("SelectTextdrawSys", "i", playerid);
+	
+		
+	if( Ranjen[playerid] == 1)
+	{
+		SetPlayerChatBubble( playerid, "(( Ovaj igrac je trenutno ranjen... Umire tacno za 20 sekundi! - /pomozi ))", PLAVA, 40.0, 10000);
+	}
+
+	
+	return 1;
+}
+
+task InternetConnectionCheck[2500]()
+{
+	print("Timer 'InternetConnectionCheck' was called.");
+	for(new playerid; playerid < MAX_PLAYERS; playerid++)
+	{
+		if(!IsPlayerConnected(playerid)) continue;
+		if(WifiConnectionTDShowed[playerid])
+		{
+			WifiConnectionTDControl(playerid, false);
+
+			if(GetPlayerPing(playerid) <= 300 || GetPlayerPing(playerid) > 300)
+			{
+				PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[2][playerid], SIVA);
+				PlayerTextDrawColor(playerid, WifiConnection[3][playerid], SIVA);
+				PlayerTextDrawColor(playerid, WifiConnection[4][playerid], SIVA);
+			}
+			if(GetPlayerPing(playerid) <= 200)
+			{
+				PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[2][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[3][playerid], SIVA);
+				PlayerTextDrawColor(playerid, WifiConnection[4][playerid], SIVA);
+			}
+			if(GetPlayerPing(playerid) <= 120)
+			{
+				PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[2][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[3][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[4][playerid], SIVA);
+			}
+			if(GetPlayerPing(playerid) <= 50)
+			{
+				PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[2][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[3][playerid], tdboja);
+				PlayerTextDrawColor(playerid, WifiConnection[4][playerid], tdboja);
+			}
+
+			WifiConnectionTDControl(playerid, true);
+
+			new ping[20];
+			format(ping,sizeof ping,"%i ms", GetPlayerPing(playerid));
+			PlayerTextDrawSetString(playerid, WifiConnection[5][playerid], ping);
+		}
+	}
+}
+
+task UpdatePlayer[3000]()
+{
+	print("Timer 'UpdatePlayer' was called.");
+	for(new playerid; playerid < MAX_PLAYERS; playerid++)
+	{
+		if(!IsPlayerConnected(playerid)) continue;
+		new igra[10], kills[10];
+		format(igra,10,"%i", PUBGenum[xCekaIgraca] + PUBGenum[xIgraMatch]);
+
+		if(PlayerInfo[playerid][xPUBG] == 1)
+		{
+			TextDrawSetString(PubgEventTd[5], igra);
+
+			format(kills,10,"%i", PlayerInfo[playerid][xPUBGKills]);
+			PlayerTextDrawSetString(playerid, PubgEventKills[playerid], kills);
+		}
+		if(PUBGTDShowed[playerid])
+		{
+			PlayerTextDrawHide(playerid,PUBGTextdraw[2][playerid]);
+			PlayerTextDrawSetPreviewModel(playerid,PUBGTextdraw[2][playerid],PlayerInfo[playerid][xSkin]);
+			PlayerTextDrawShow(playerid,PUBGTextdraw[2][playerid]);
+		}
+		if(!PUBGTDShowed[playerid])
+		{
+			PlayerTextDrawHide(playerid,PUBGTextdraw[2][playerid]);
+		}
+		
+		if(!StatsTDShowed[playerid])
+		{
+			PlayerTextDrawHide(playerid, SkinIgraca[playerid]);
+		}
+
+		if(PlayerLogged[playerid]) LoginTDControl(playerid, false);
+
+		if(PlayerInfo[playerid][xPUBG] == 0)
+		{
+			PubgEventTDControl(playerid, false);
+		}
+
+		if(PlayerInfo[playerid][xPUBG] == 1)
+		{
+			PubgEventTDControl(playerid, false);
+			PubgEventTDControl(playerid, true);
+		}
+	}
+	return 1;
+}
+
+task UpdateOdjecaModels[3000]()
+{
+	print("Timer 'UpdateOdjecaModels' was called.");
+	for(new playerid; playerid < MAX_PLAYERS; playerid++)
+	{
+		if(!IsPlayerConnected(playerid)) continue;
+		if(OdjecaTDShowed[playerid])
+		{
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[10][playerid]);
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[11][playerid]);
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[12][playerid]);
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[13][playerid]);
+
+			if(PlayerInfo[playerid][xHead] != 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[10][playerid], 0.0, -90.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[10][playerid],PlayerInfo[playerid][xHead]);
+			}
+			if(PlayerInfo[playerid][xSungMask] != 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[11][playerid], 0.0, 0.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[11][playerid],PlayerInfo[playerid][xSungMask]);
+			}
+			if(PlayerInfo[playerid][xFace] != 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[12][playerid], 0.0, -90.0, 0.0, 1.0);			
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[12][playerid],PlayerInfo[playerid][xFace]);
+			}
+			if(PlayerInfo[playerid][xPapagaj] != 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[13][playerid], 0.0, -90.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[13][playerid],19078);
+			}
+
+			if(PlayerInfo[playerid][xHead] == 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[10][playerid], 0.0, 0.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[10][playerid],18631);
+			}
+			if(PlayerInfo[playerid][xSungMask] == 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[11][playerid], 0.0, 0.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[11][playerid],18631);
+			}
+			if(PlayerInfo[playerid][xFace] == 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[12][playerid], 0.0, 0.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[12][playerid],18631);
+			}
+			if(PlayerInfo[playerid][xPapagaj] == 0)
+			{
+				PlayerTextDrawSetPreviewRot(playerid, OdjecaTextdraw[13][playerid], 0.0, 0.0, 0.0, 1.0);
+				PlayerTextDrawSetPreviewModel(playerid,OdjecaTextdraw[13][playerid],18631);
+			}
+
+			PlayerTextDrawShow(playerid, OdjecaTextdraw[10][playerid]);
+			PlayerTextDrawShow(playerid, OdjecaTextdraw[11][playerid]);
+			PlayerTextDrawShow(playerid, OdjecaTextdraw[12][playerid]);
+			PlayerTextDrawShow(playerid, OdjecaTextdraw[13][playerid]);
+		}
+		if(!OdjecaTDShowed[playerid])
+		{
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[10][playerid]);
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[11][playerid]);
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[12][playerid]);
+			PlayerTextDrawHide(playerid, OdjecaTextdraw[13][playerid]);
+			OdjecaTDControl(playerid, false);
+		}
+	}
+
+	return 1;
+}
+
+task updateMoneyBar[2000]()
+{
+	print("Timer 'updateMoneyBar' was called.");
+	for(new playerid; playerid < MAX_PLAYERS; playerid++)
+	{
+		if(!IsPlayerConnected(playerid)) continue;
+		if( PlayerLogged[ playerid ] == true && ClientType[playerid] == CLIENT_PC)
+		{
+
+			PlayerTextDrawShow(playerid,MoneyBar[playerid]);
+			new moneybarstring[20];
+
+			if(PlayerInfo[ playerid ][ xNovac ] >= 0 && PlayerInfo[ playerid ][ xNovac ] < 10)
+			{
+				format(moneybarstring, 20, "$00000000%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 10 && PlayerInfo[ playerid ][ xNovac ] < 100)
+			{
+				format(moneybarstring, 20, "$0000000%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 100 && PlayerInfo[ playerid ][ xNovac ] < 1000)
+			{
+				format(moneybarstring, 20, "$000000%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 1000 && PlayerInfo[ playerid ][ xNovac ] < 10000)
+			{
+				format(moneybarstring, 20, "$00000%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 10000 && PlayerInfo[ playerid ][ xNovac ] < 100000)
+			{
+				format(moneybarstring, 20, "$0000%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 100000 && PlayerInfo[ playerid ][ xNovac ] < 1000000)
+			{
+				format(moneybarstring, 20, "$000%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 1000000 && PlayerInfo[ playerid ][ xNovac ] < 10000000)
+			{
+				format(moneybarstring, 20, "$00%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 10000000 && PlayerInfo[ playerid ][ xNovac ] < 100000000)
+			{
+				format(moneybarstring, 20, "$0%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+			if(PlayerInfo[ playerid ][ xNovac ] >= 100000000 && PlayerInfo[ playerid ][ xNovac ] < 999999999)
+			{
+				format(moneybarstring, 20, "$%i", PlayerInfo[ playerid ][ xNovac ]);
+			}
+
+			PlayerTextDrawSetString( playerid, MoneyBar[ playerid ], moneybarstring );
+		}
+	}
+	return 1;
 }

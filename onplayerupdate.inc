@@ -15,6 +15,10 @@
 */
 
 
+#if NERP_ZOMBIE_SISTEM == 0
+ #endinput
+#endif
+
 #define ZOMBIE_EVENT_SERVER 3640
 #define MAX_ZOMBIES 100
 
@@ -89,6 +93,7 @@ zombieGame(); public zombieGame()
 {
 	for(new i; i < MAX_PLAYERS; i++)
 	{
+		if(!IsPlayerConnected(i)) return 0;
 		if(NaZombieEventu[i])
 		{
 			new players[10];
@@ -298,7 +303,7 @@ UpdateZombiePos(); public UpdateZombiePos()
 
 GetNearestZombie( playerid )
 {
-    for( new i = 1; i < MAX_STREETS; i++ )
+    for( new i; i < MAX_ZOMBIES; i++ )
 	{
         if( IsPlayerInRangeOfPoint( playerid, 2.0, 
         	zombieInfo[ i ][zombiePos][ 0 ],
@@ -391,7 +396,8 @@ CMD:udjinazombie( playerid, params[] )
     return 1;
 }
 
-stock ZombieEvent_OnPlayerDeath(playerid)
+ZombieEvent_OnPlayerDeath(playerid);
+public ZombieEvent_OnPlayerDeath(playerid)
 {
 	NaZombieEventu[ playerid ] = false;
    	DodajIgracuHP(playerid, -1000);
@@ -423,7 +429,8 @@ stock ZombieEvent_OnPlayerDeath(playerid)
 	return 1;
 }
 
-stock ZombieEvent_CloseConnection(playerid)
+ZombieEvent_CloseConnection(playerid);
+public ZombieEvent_CloseConnection(playerid)
 {
 	if(!NaZombieEventu[ playerid ]) return 1;
 	NaZombieEventu[ playerid ] = false;

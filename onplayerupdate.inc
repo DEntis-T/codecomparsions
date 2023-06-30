@@ -1,16 +1,18 @@
 
 public OnPlayerUpdate( playerid )
 {
-	for( new b = 0; b < MAX_DEALERS; b++ )
+	CallLocalFunction("NERP_ONPLAYERUPDATE", "i", playerid);
+
+	/*for( new b = 0; b < MAX_DEALERS; b++ )
 	{
-        if( IsPlayerInRangeOfPoint( playerid, 50.0, 
+        if( IsPlayerInRangeOfPoint( playerid, 10.0, 
         	DealerInfo[b][dealerPos][0],
         	DealerInfo[b][dealerPos][1],
         	DealerInfo[b][dealerPos][2] ) )
         {
         	Dileri3D(b, false, playerid);
         }
-	}
+	}*/
 	
 	new weapon_found = -1;
 	for( new a = 0; a < MAX_GOBJ; a++ )
@@ -53,45 +55,7 @@ public OnPlayerUpdate( playerid )
 		}
 	}
 
-	if(WifiConnectionTDShowed[playerid])
-	{
-		WifiConnectionTDControl(playerid, false);
-
-		if(GetPlayerPing(playerid) <= 300 || GetPlayerPing(playerid) > 300)
-		{
-			PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[2][playerid], SIVA);
-			PlayerTextDrawColor(playerid, WifiConnection[3][playerid], SIVA);
-			PlayerTextDrawColor(playerid, WifiConnection[4][playerid], SIVA);
-		}
-		if(GetPlayerPing(playerid) <= 200)
-		{
-			PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[2][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[3][playerid], SIVA);
-			PlayerTextDrawColor(playerid, WifiConnection[4][playerid], SIVA);
-		}
-		if(GetPlayerPing(playerid) <= 120)
-		{
-			PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[2][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[3][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[4][playerid], SIVA);
-		}
-		if(GetPlayerPing(playerid) <= 50)
-		{
-			PlayerTextDrawColor(playerid, WifiConnection[1][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[2][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[3][playerid], tdboja);
-			PlayerTextDrawColor(playerid, WifiConnection[4][playerid], tdboja);
-		}
-
-		WifiConnectionTDControl(playerid, true);
-
-		new ping[20];
-		format(ping,sizeof ping,"%i ms", GetPlayerPing(playerid));
-		PlayerTextDrawSetString(playerid, WifiConnection[5][playerid], ping);
-	}
+	
 	if(GetPlayerPing(playerid) > 100)
 	{
 		SendScreenMessage(playerid, "Imate probleme sa internetom, molimo sacekajte!");
@@ -369,11 +333,6 @@ public OnPlayerUpdate( playerid )
             return 0;
         }
     }
-    new sine = 0;
-    if( sine == 1 )
-    {
-    	return 0;
-    }
 	
 	if( PlayerLogged[ playerid ] == true )
 	{
@@ -391,7 +350,7 @@ public OnPlayerUpdate( playerid )
   		#endif
 	}
 	
-	/*static
+	static
 		Float: X, 	Float: Y, 	Float: Z,
 		Float: vX,	Float: vY, 	Float: vZ;
 	
@@ -404,7 +363,7 @@ public OnPlayerUpdate( playerid )
 			Kickovanje( playerid, ""col_white"Ti si kickovan sa servera. Razlog: "col_balkanstory"Cleo Car Swing");
 			return 1;
 		}
-	}*/
+	}
 	
   	if( flymodecamera[ playerid ][ cameramode ] == true ) {
 		new keys,ud,lr;

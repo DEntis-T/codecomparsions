@@ -3793,3 +3793,29 @@ skok(pid); public skok(pid)
 	}
 	return 1;
 }
+
+// callbacks
+
+NERP_PUBG_OPU(playerid); public NERP_PUBG_OPU(playerid)
+{
+    if(PlayerInfo[pid][xPUBG] == 1)
+    {
+        if(PUBGenum[xIgraMatch] == 1)
+        {
+            announcement(pid,"Winner Winner Chicken Dinner - cestitamo!");
+            PlayerInfo[pid][xPUBG] = 0;
+            new winner_title[300];
+            //PUBGenum[xIgraMatch] = 0;
+            format(winner_title,sizeof(winner_title),
+                ""col_balkanstory"[PUBG INFO]{ffffff}: Pobjednik PUBG eventa je %s - cestitamo!",
+                ImeIgraca(pid));
+            SCMA(-1,winner_title);
+            new nagrada = random(10000)+5000;
+            SendInfoMessage(pid,"Match se zavrsava za 10 sekundi.");
+            DajIgracuNovac(pid,nagrada);
+            SendInfoMessage(pid,"Dobio si $%i kao nagradu za pobjedu!",nagrada);
+            endmatch[pid] = SetTimerEx("matchend", 10000, false, "ii", playerid, 1);
+        }
+    }
+    return 1;
+}

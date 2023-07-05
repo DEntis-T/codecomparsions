@@ -16,6 +16,7 @@
 
 CreatePickupsAnd3Ds( ) 
 {
+	printf("[NE:RP] - Nova Era | Ucitavanje sistema za labele i pickupe!");
 	//GARAGE PICKUPS
 	Create3DandP(""col_balkanstory"[ IZLAZ ]\n{FFFFFF}Da izadjete iz prostorije, stisnite\n"col_balkanstory"F", 
 		GarageCoords,
@@ -504,4 +505,6 @@ CreatePickupsAnd3Ds( )
     Create3DandP(""col_white"Ukoliko zelite da obucete uniformu tjelohranitelja\n"col_balkanstory"[ /uniformbodyguard ]", 1271.9607, -814.5180, 1089.9375, -1, -1, 1239, 2.0 );
     Create3DandP(""col_white"Ukoliko zelite da obucete uniformu vozaca\n"col_balkanstory"[ /uniformdriver ]", 1271.9609, -812.2278, 1089.9375, -1, -1, 1239, 2.0 );
     Create3DandP(""col_white"Da kupite kacigu kucajte\n"col_balkanstory"[ /buyhelmet ]", 1990.9835, -2065.2139, 13.9252, -1, -1, 1239, 2.0 );
+    return 1;
+
 }

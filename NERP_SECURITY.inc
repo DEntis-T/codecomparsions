@@ -10,6 +10,10 @@
 
 */
 
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
+
 SetupNovaSecurity(playerid);
 public SetupNovaSecurity(playerid)
 {
@@ -401,5 +405,127 @@ public OnPlayerCheat( playerid, type, source, source2 )
 			}
 		}
     }
+	return 1;
+}
+
+
+//------------------------------------------------------------------------------
+AntiCheat(playerid); public AntiCheat(playerid) 
+{
+	if( PlayerLogged[ playerid ] == true ) {
+		// -- Anti Health
+		if( antiCheatSS[ antiHealthH  ] == true ) {
+			new Float:Zivot;
+			GetPlayerHealth( playerid, Zivot );
+			if( KodSprunk( playerid ) ) {
+				Dimi_SetPlayerHealth( playerid, Zivot );
+				return 1;
+			}
+			if( Zivot > antiCheatCS[ playerid ][ TrueHealth ] && !KodSprunk( playerid ) ) {
+				Dimi_SetPlayerHealth( playerid, antiCheatCS[ playerid ][ TrueHealth ] );
+				return 1;
+			}
+			antiCheatCS[ playerid ][ TrueHealth ] = Zivot;
+		}
+		
+		// -- Anti Vehicle Repair
+		if( antiCheatSS[ antiVehRepair ] == true ) {
+			if( antiCheatCS[ playerid ][ VehRepairTime ] <= 0 ) {
+				if( GetPlayerState( playerid ) == PLAYER_STATE_DRIVER ) {
+					new vehicleid = GetPlayerVehicleID( playerid ), Float:vHealth;
+					GetVehicleHealth( vehicleid, vHealth );
+					if( vHealth > ( antiCheatVS[ vehicleid ][ VehTrueHealth ]+10 ) ) {
+						if( antiCheatVS[ vehicleid ][ VehCheck ] == 1 && !AdminDuty[ playerid ] && !IsVehicleLetelica( GetPlayerVehicleID( playerid ) ) ) {
+							if( !IsPlayerAtVehicleRepairPoint( playerid ) ) {
+								OnPlayerCheat( playerid, DETECT_VEHREPAIR_HACK, 0, 0 );
+								Dimi_SetVehicleHealth( vehicleid, antiCheatVS[ vehicleid ][ VehTrueHealth ] );
+								antiCheatCS[ playerid ][ VehRepairTime ] = 3;
+							}
+						}
+					}
+					antiCheatVS[ vehicleid ][ VehTrueHealth ] = vHealth;
+				}
+			}
+			else {
+				antiCheatCS[ playerid ][ VehRepairTime ]--;
+			}
+		}
+		// -- Anti Ping
+		if( GetPlayerPing( playerid ) > 700 ) {
+			antiCheatCS[ playerid ][ HighPing ]++;
+			if( antiCheatCS[ playerid ][ HighPing ] == 4 ) {
+				antiCheatCS[ playerid ][ HighPing ] = 0;
+				Kickovanje( playerid, ""col_white"Ti si kickovan sa servera. Razlog: "col_balkanstory"Previsok Ping" );
+			}
+		}
+		// -- Anti Armour
+		if( antiCheatSS[ antiArmourH ] == true ) {
+			new Float:Armour;
+			GetPlayerArmour( playerid, Armour );
+			if( Armour > antiCheatCS[ playerid ][ TrueArmour ] ) {
+				Dimi_SetPlayerArmour( playerid, antiCheatCS[ playerid ][ TrueArmour ] );
+				return 1;
+			}
+			antiCheatCS[ playerid ][ TrueArmour ] = Armour;
+		}
+		// -- Anti Speed
+		if( antiCheatSS[ antiSpeedH ] == true )
+		{
+			if( IsPlayerInAnyVehicle( playerid ) && GetPlayerState( playerid ) == PLAYER_STATE_DRIVER )
+			{
+				if( GetPlayerSurfingVehicleID( playerid ) == INVALID_VEHICLE_ID && !IsVehicleLetelica( GetPlayerVehicleID( playerid ) ) && !antiSpeedVehicle( GetPlayerVehicleID( playerid ) ) )
+				{
+					new modelID = GetVehicleModel( GetPlayerVehicleID( playerid ) );
+					//if( !antiCheatCS[ playerid ][ SpeedFall ] && VehicleSpeedAC[ modelID-400 ][ 1 ] != 0 && GetSpeed( playerid ) > ( VehicleSpeedAC[ modelID-400 ][ 1 ]+20 ) ) {
+					if( !antiCheatCS[ playerid ][ SpeedFall ] && modelID >= 400 && modelID <= 611 && VehicleSpeedAC[ modelID-400 ][ 1 ] != 0 && GetSpeed( playerid ) > ( VehicleSpeedAC[ modelID-400 ][ 1 ]+20 ) )
+					{
+						OnPlayerCheat( playerid, DETECT_SPEED_HACK, 0, 0 );
+					}
+				}
+			}
+			FallingChecker( playerid );
+		}
+		// -- Anti JetPack
+		if( antiCheatSS[ antiJetPackH ] == true )
+		{
+			if( PlayerInfo[ playerid ][ xAdmin ] < 1 )
+			{
+				if( GetPlayerSpecialAction( playerid ) == SPECIAL_ACTION_USEJETPACK )
+					OnPlayerCheat( playerid, DETECT_JETPACK_HACK, 0, 0 );
+			}
+		}
+		// -- Anti Money
+		if( antiCheatSS[ antiMoneyH ] == true ) {
+			new PraviNovac = PlayerInfo[ playerid ][ xNovac ],
+				StvoreniNovac = GetPlayerMoney( playerid );
+
+			if( StvoreniNovac > PraviNovac ) {
+				ResetujBarNovac( playerid );
+				UpdejtujBarNovac( playerid, PraviNovac );
+			}
+			else if( StvoreniNovac < PraviNovac ) {
+				if( antiCheatCS[ playerid ][ InTuningGarage ] )
+					PlayerInfo[ playerid ][ xNovac ] = StvoreniNovac;
+				else if( ( ( PraviNovac - StvoreniNovac ) == 1 ) && ( GetPlayerState( playerid ) == PLAYER_STATE_ONFOOT ) )
+					PlayerInfo[ playerid ][ xNovac ] -= 1;
+			}
+		}
+		antiCheatCS[ playerid ][ RemoveVehicle ] = false;
+		//
+		if( GetPlayerState( playerid ) == PLAYER_STATE_ONFOOT )
+		{
+
+			new Float:PlayerVel[ 3 ];
+			GetPlayerVelocity( playerid, PlayerVel[ 0 ], PlayerVel[ 1 ], PlayerVel[ 2 ] );
+
+			if( floatround( PlayerVel[ 0 ] ) > 1 || floatround( PlayerVel[ 1 ] ) > 1 || floatround( PlayerVel[ 2 ] ) > 1 )
+			{
+				format( globalstring, sizeof( globalstring ), "{FF0000}| AC |:"SERVERBOJA_AQUA" %s "col_white"je kickovan sa servera. Razlog: "SERVERBOJA_AQUA"Speed ON foot Hack", ImeIgraca( playerid ) );
+				AdminPoruka( SVETLOCRVENA, globalstring );
+				Kickovanje( playerid, ""col_white"Ti si kickovan sa servera. Razlog: "col_balkanstory"Speed ON foot Hack");
+				return 0;
+			}
+		}
+	}
 	return 1;
 }

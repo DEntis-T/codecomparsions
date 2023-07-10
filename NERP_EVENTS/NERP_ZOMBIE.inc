@@ -14,6 +14,10 @@
  *                   *
 */
 
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
+
 
 #if NERP_ZOMBIE_SISTEM == 0
  #endinput

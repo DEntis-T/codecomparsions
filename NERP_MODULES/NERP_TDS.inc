@@ -14,6 +14,10 @@
  *                   *
  */
 
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
+
 new tdsector;
 
 stock CreateLoadingTextDraws()
@@ -4147,3 +4151,3386 @@ stock CreatePlayerTextDraws( playerid )
 	CallLocalFunction("SetupNovaSecurity", "i", playerid);
 	return 1;
 }
+
+///////////////////////////////////////////////////////////
+
+
+//------------------------------------------------------------------------------
+
+stock TuningTDControl( playerid, bool:show ) {
+
+	if( show == true )
+	{
+		for( new i = 0; i < 14; i ++) {
+			PlayerTextDrawDestroy( playerid, TuningBuy[ playerid ][ i ] );
+			TuningBuy[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+		TuningBuy[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 425.125000, 338.666687, "usebox");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 0 ], 0.000000, 8.627778);
+		PlayerTextDrawTextSize(playerid, TuningBuy[ playerid ][ 0 ], 216.125000, 0.000000);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 0 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 0 ], 0);
+		PlayerTextDrawUseBox(playerid, TuningBuy[ playerid ][ 0 ], true);
+		PlayerTextDrawBoxColor(playerid, TuningBuy[ playerid ][ 0 ], 102);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 0 ], 0);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 0 ], 0);
+
+		TuningBuy[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 319.375000, 337.749847, "Hydraulics");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 1 ], 0.386249, 1.156664);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 1 ], 2);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 1 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 1 ], 51 );
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 1 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 1 ], 1 );
+		PlayerTextDrawSetSelectable(playerid, TuningBuy[ playerid ][ 1 ], false );
+
+		TuningBuy[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid, 198.375000, 361.583282, "-");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 2 ], 18.981874, 0.514999);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 2 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 2 ], tdboja );
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 2 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 2 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 2 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 2 ], 1);
+
+		TuningBuy[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid, 222.500000, 352.916656, "Left `Chrome Flames` Sideskirt");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 3 ], 0.244999, 1.092499);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 3 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 3 ], -1);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 3 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 3 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 3 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 3 ], 1);
+
+		TuningBuy[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid, 222.500000, 365.000000, "Sultan");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 4 ], 0.244999, 1.092499);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 4 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 4 ], -1);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 4 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 4 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 4 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 4 ], 1);
+
+		TuningBuy[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid, 215.125000, 372.999877, "-");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 5 ], 6.743125, 0.444999);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 5 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 5 ], UGBOJA );
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 5 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 5 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 5 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 5 ], 1);
+
+		TuningBuy[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid, 206.750000, 347.166564, "-");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 6 ], 18.981874, 0.514999);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 6 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 6 ], UGBOJA );
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 6 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 6 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 6 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 6 ], 1);
+
+		TuningBuy[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid, 385.000000, 381.500000, "ld_beat:right");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 7 ], 0.449999, 1.600000);
+		PlayerTextDrawTextSize(playerid, TuningBuy[ playerid ][ 7 ], 27.500000, 13.416657);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 7 ], 2);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 7 ], -1);
+		PlayerTextDrawUseBox(playerid, TuningBuy[ playerid ][ 7 ], true);
+		PlayerTextDrawBoxColor(playerid, TuningBuy[ playerid ][ 7 ], 255);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 7 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 7 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 7 ], 4);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 7 ], 1);
+		PlayerTextDrawSetSelectable(playerid, TuningBuy[ playerid ][ 7 ], true);
+
+		TuningBuy[ playerid ][ 8 ] = CreatePlayerTextDraw(playerid, 230.375000, 381.916473, "ld_beat:left");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 8 ], 0.449999, 1.600000);
+		PlayerTextDrawTextSize(playerid, TuningBuy[ playerid ][ 8 ], 27.500000, 13.416657);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 8 ], 2);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 8 ], -1);
+		PlayerTextDrawUseBox(playerid, TuningBuy[ playerid ][ 8 ], true);
+		PlayerTextDrawBoxColor(playerid, TuningBuy[ playerid ][ 8 ], 255);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 8 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 8 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 8 ], 4);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 8 ], 1);
+		PlayerTextDrawSetSelectable(playerid, TuningBuy[ playerid ][ 8 ], true);
+
+		TuningBuy[ playerid ][ 9 ] = CreatePlayerTextDraw(playerid, 320.000000, 381.499938, "POSTAVI");
+		PlayerTextDrawTextSize(playerid, TuningBuy[ playerid ][ 9 ], 23.000000, 13.000000 );
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 9 ], 0.421249, 1.360832 );
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 9 ], 2);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 9 ], -1);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 9 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 9 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 9 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 9 ], 1);
+		PlayerTextDrawSetSelectable(playerid, TuningBuy[ playerid ][ 9 ], true);
+
+		TuningBuy[ playerid ][ 10 ] = CreatePlayerTextDraw(playerid, 200.000000, 396.416656, "-");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 10 ], 18.981874, 0.514999);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 10 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 10 ], UGBOJA );
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 10 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 10 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 10 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 10 ], 1);
+																							 
+		TuningBuy[ playerid ][ 11 ] = CreatePlayerTextDraw(playerid, 225.000000, 401.916595, "Car Tuning");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 11 ], 0.258749, 0.987497);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 11 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 11 ], -1);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 11 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 11 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 11 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 11 ], 1);
+
+		TuningBuy[ playerid ][ 12 ] = CreatePlayerTextDraw(playerid, 203.500000, 411.416839, "-");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 12 ], 18.981874, 0.514998);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 12 ], 1);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 12 ], UGBOJA );
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 12 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 12 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 12 ], 2);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 12 ], 1);
+
+		TuningBuy[ playerid ][ 13 ] = CreatePlayerTextDraw(playerid, 404.500000, 337.999877, "ld_beat:cross");
+		PlayerTextDrawLetterSize(playerid, TuningBuy[ playerid ][ 13 ], 0.449999, 1.600000);
+		PlayerTextDrawTextSize(playerid, TuningBuy[ playerid ][ 13 ], 17.500000, 8.749991);
+		PlayerTextDrawAlignment(playerid, TuningBuy[ playerid ][ 13 ], 2);
+		PlayerTextDrawColor(playerid, TuningBuy[ playerid ][ 13 ], -1);
+		PlayerTextDrawUseBox(playerid, TuningBuy[ playerid ][ 13 ], true);
+		PlayerTextDrawBoxColor(playerid, TuningBuy[ playerid ][ 13 ], 255);
+		PlayerTextDrawSetShadow(playerid, TuningBuy[ playerid ][ 13 ], 0);
+		PlayerTextDrawSetOutline(playerid, TuningBuy[ playerid ][ 13 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, TuningBuy[ playerid ][ 13 ], 51);
+		PlayerTextDrawFont(playerid, TuningBuy[ playerid ][ 13 ], 4);
+		PlayerTextDrawSetProportional(playerid, TuningBuy[ playerid ][ 13 ], 1);
+		PlayerTextDrawSetSelectable(playerid, TuningBuy[ playerid ][ 13 ], true);
+	
+	}
+	else if( show == false ) {
+		for( new i = 0; i < 14; i ++) {
+			PlayerTextDrawDestroy( playerid, TuningBuy[ playerid ][ i ] );
+			TuningBuy[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+	}
+}
+#if kladionica == 1
+stock KladionicaListicTDControl( playerid, bool:show ) {//Sredjeno
+
+	if( show == true ) {
+
+		KladionicaSM[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 525.125000, 143.250000, "usebox");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 0 ], 0.000000, 19.127779);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 0 ], 108.000000, 0.000000);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 0 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawUseBox(playerid, KladionicaSM[ playerid ][ 0 ], true);
+		PlayerTextDrawBoxColor(playerid, KladionicaSM[ playerid ][ 0 ], 102);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+
+		KladionicaSM[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 119.555549, 170.737731, "Pocetak utakmice");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 1 ], 0.207777, 1.166933);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 1 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 1 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+
+		KladionicaSM[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid, 110.000000, 186.083328, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 2 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 2 ], 413.125000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 2 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 2 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 2 ], 4);
+
+		KladionicaSM[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid, 110.375000, 167.833374, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 3 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 3 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 3 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 3 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 3 ], 4);
+
+		KladionicaSM[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid, 266.125000, 186.750015, "Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manches");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 4 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 4 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 4 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 4 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 4 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 4 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 4 ], 1);
+
+		KladionicaSM[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid, 114.500000, 187.500045, "29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 5 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 5 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 5 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 5 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+
+		KladionicaSM[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid, 381.500000, 187.166671, "Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manches");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 6 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 6 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 6 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 6 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 6 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 6 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 6 ], 1);
+
+		KladionicaSM[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid, 480.625000, 187.000030, "1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.5");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 7 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 7 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 7 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 7 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 7 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 7 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 7 ], 1);
+
+		KladionicaSM[ playerid ][ 8 ] = CreatePlayerTextDraw(playerid, 244.111068, 170.742126, "DOMACIN");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 8 ], 0.207777, 1.166933);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 8 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 8 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 8 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 8 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 8 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 8 ], 1);
+
+		KladionicaSM[ playerid ][ 9 ] = CreatePlayerTextDraw(playerid, 359.777557, 170.746597, "GOSTUJUCI");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 9 ], 0.207777, 1.166933);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 9 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 9 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 9 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 9 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 9 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 9 ], 1);
+
+		KladionicaSM[ playerid ][ 10 ] = CreatePlayerTextDraw(playerid, 451.111328, 171.235473, "TIP    KVOTA");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 10 ], 0.242444, 1.037511);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 10 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 10 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 10 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 10 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 10 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 10 ], 1);
+
+		KladionicaSM[ playerid ][ 11 ] = CreatePlayerTextDraw(playerid, 261.777709, 147.839889, "W~w~Win Kladionica");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 11 ], 0.449999, 1.600000);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 11 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 11 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 11 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 11 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 11 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 11 ], 1);
+
+		KladionicaSM[ playerid ][ 12 ] = CreatePlayerTextDraw(playerid, 422.222167, 303.644409, "For all gamers");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 12 ], 0.350888, 0.684089);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 12 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 12 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 12 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 12 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 12 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 12 ], 1);
+
+		KladionicaSM[ playerid ][ 13 ] = CreatePlayerTextDraw(playerid, 118.333267, 306.137725, "www.wwin.rs");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 13 ], 0.349555, 0.629333);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 13 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 13 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 13 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 13 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 13 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 13 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 13 ], 1);
+
+		KladionicaSM[ playerid ][ 14 ] = CreatePlayerTextDraw(playerid, 208.125000, 168.583343, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 14 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 14 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 14 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 14 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 14 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 14 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 14 ], 4);
+
+		KladionicaSM[ playerid ][ 15 ] = CreatePlayerTextDraw(playerid, 322.875000, 167.833328, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 15 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 15 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 15 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 15 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 15 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 15 ], 4);
+
+		KladionicaSM[ playerid ][ 16 ] = CreatePlayerTextDraw(playerid, 439.500000, 167.083343, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 16 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 16 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 16 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 16 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 16 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 16 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 16 ], 4);
+
+		KladionicaSM[ playerid ][ 17 ] = CreatePlayerTextDraw(playerid, 475.500000, 167.500015, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 17 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 17 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 17 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 17 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 17 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 17 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 17 ], 4);
+
+		KladionicaSM[ playerid ][ 18 ] = CreatePlayerTextDraw(playerid, 111.000000, 272.333190, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 18 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 18 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 18 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 18 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 18 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 18 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 18 ], 4);
+
+		KladionicaSM[ playerid ][ 19 ] = CreatePlayerTextDraw(playerid, 518.750000, 168.500015, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 19 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 19 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 19 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 19 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 19 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 19 ], 4);
+
+		KladionicaSM[ playerid ][ 20 ] = CreatePlayerTextDraw(playerid, 113.750000, 167.749984, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 20 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 20 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 20 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 20 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 20 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 20 ], 4);
+
+		KladionicaSM[ playerid ][ 21 ] = CreatePlayerTextDraw(playerid, 519.667602, 285.230987, "DOBITAK: ~w~1000000$");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 21 ], 0.302888, 0.937955);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 21 ], 3);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 21 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 21 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 21 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 21 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+
+		KladionicaSM[ playerid ][ 22 ] = CreatePlayerTextDraw(playerid, 115.555549, 284.231079, "ULOG: ~w~200$");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 22 ], 0.302888, 0.937955);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 22 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 22 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 22 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 22 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+
+		KladionicaSM[ playerid ][ 23 ] = CreatePlayerTextDraw(playerid, 320.444091, 301.155578, "Listic u sistemu");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 23 ], 0.362444, 1.201778);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 23 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 23 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 23 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 23 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 23 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		PlayerTextDrawSetSelectable(playerid, KladionicaSM[ playerid ][ 23 ], true);
+
+		KladListicSM[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 109.500000, 196.249954, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 0 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 0 ], 413.125000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 0 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 0 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 0 ], 4);
+
+		KladListicSM[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 109.250000, 204.249938, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 1 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 1 ], 413.750000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 1 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 1 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 1 ], 4);
+
+		KladListicSM[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid, 109.625000, 212.833236, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 2 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 2 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 2 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 2 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 2 ], 4);
+
+		KladListicSM[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid, 110.625000, 221.999908, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 3 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 3 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 3 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 3 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 3 ], 4);
+
+		KladListicSM[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid, 109.750000, 229.999908, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 4 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 4 ], 413.750000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 4 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 4 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 4 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 4 ], 4);
+
+		KladListicSM[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid, 109.500000, 238.583175, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 5 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 5 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 5 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 5 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 5 ], 4);
+
+		KladListicSM[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid, 110.500000, 245.999816, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 6 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 6 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 6 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 6 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 6 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 6 ], 4);
+
+		KladListicSM[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid, 109.000000, 254.583099, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 7 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 7 ], 414.375000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 7 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 7 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 7 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 7 ], 4);
+
+		KladListicSM[ playerid ][ 8 ] = CreatePlayerTextDraw(playerid, 110.625000, 263.166473, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladListicSM[ playerid ][ 8 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladListicSM[ playerid ][ 8 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladListicSM[ playerid ][ 8 ], 1);
+		PlayerTextDrawColor(playerid, KladListicSM[ playerid ][ 8 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladListicSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladListicSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawFont(playerid, KladListicSM[ playerid ][ 8 ], 4);
+
+		new broj = 0;
+		for( new i = 0; i < 10; i++ ) {
+
+			if( KladionicaListic[ playerid ][ parID ][ i ] != -1 ) {
+				broj++;
+			}
+		}
+
+		new str[ 256 ];
+		
+		format( str, sizeof( str ), "DOBITAK: ~w~%.2f$", KladionicaListic[ playerid ][ Dobitak ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 21 ], str );
+		
+		format( str, sizeof( str ), "ULOG: ~w~%d$", KladionicaListic[ playerid ][ Uplata ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 22 ], str );
+
+		if( broj == 1 ) {
+			
+			format( str, sizeof( str ), "%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s",
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 2 ) {
+
+			format( str, sizeof( str ), "%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+			
+		}
+		else if( broj == 3 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 4 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 5 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 4 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 4 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 4 ] ), KladionicaListic[ playerid ][ Kvota ][ 4 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 6 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 5 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 5 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 4 ] ), KladionicaListic[ playerid ][ Kvota ][ 4 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 5 ] ), KladionicaListic[ playerid ][ Kvota ][ 5 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 7 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 6 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 6 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 4 ] ), KladionicaListic[ playerid ][ Kvota ][ 4 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 5 ] ), KladionicaListic[ playerid ][ Kvota ][ 5 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 6 ] ), KladionicaListic[ playerid ][ Kvota ][ 6 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 8 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 6 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 7 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 6 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 7 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 4 ] ), KladionicaListic[ playerid ][ Kvota ][ 4 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 5 ] ), KladionicaListic[ playerid ][ Kvota ][ 5 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 6 ] ), KladionicaListic[ playerid ][ Kvota ][ 6 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 7 ] ), KladionicaListic[ playerid ][ Kvota ][ 7 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 9 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 6 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 7 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 8 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 6 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 7 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 8 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 4 ] ), KladionicaListic[ playerid ][ Kvota ][ 4 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 5 ] ), KladionicaListic[ playerid ][ Kvota ][ 5 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 6 ] ), KladionicaListic[ playerid ][ Kvota ][ 6 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 7 ] ), KladionicaListic[ playerid ][ Kvota ][ 7 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 8 ] ), KladionicaListic[ playerid ][ Kvota ][ 8 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+		else if( broj == 10 ) {
+
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 6 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 7 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 8 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID1 ][ 9 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 0 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 1 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 2 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 3 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 4 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 5 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 6 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 7 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 8 ] ][ teamName ],
+				bettingInfo[ KladionicaListic[ playerid ][ teamID2 ][ 9 ] ][ teamName ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+			
+			format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ],
+				KladionicaListic[ playerid ][ HourPobeda ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+			
+			format( str, sizeof( str ), "%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f~n~%s______%.2f",
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 0 ] ), KladionicaListic[ playerid ][ Kvota ][ 0 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 1 ] ), KladionicaListic[ playerid ][ Kvota ][ 1 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 2 ] ), KladionicaListic[ playerid ][ Kvota ][ 2 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 3 ] ), KladionicaListic[ playerid ][ Kvota ][ 3 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 4 ] ), KladionicaListic[ playerid ][ Kvota ][ 4 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 5 ] ), KladionicaListic[ playerid ][ Kvota ][ 5 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 6 ] ), KladionicaListic[ playerid ][ Kvota ][ 6 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 7 ] ), KladionicaListic[ playerid ][ Kvota ][ 7 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 8 ] ), KladionicaListic[ playerid ][ Kvota ][ 8 ],
+				UzmiTipUtakmice( KladionicaListic[ playerid ][ keciksdva ][ 9 ] ), KladionicaListic[ playerid ][ Kvota ][ 9 ] );
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		}
+
+		if( KladionicaListic[ playerid ][ Uplaceno ] && !KladionicaListic[ playerid ][ Zavrseno ] ) {
+		
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 23 ], "LISTIC U SISTEMU" );
+		}
+		else if( KladionicaListic[ playerid ][ Uplaceno ] && KladionicaListic[ playerid ][ Zavrseno ] && KladionicaListic[ playerid ][ Status ] ) {
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 23 ], "Dobitan" );
+		}
+		else if( KladionicaListic[ playerid ][ Uplaceno ] && KladionicaListic[ playerid ][ Zavrseno ] && !KladionicaListic[ playerid ][ Status ] ) {
+
+			PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 23 ], "Gubitan" );
+		}
+
+		if( broj == 10 ) broj = 9;
+		for( new i = 0; i < broj; i++ ) {
+
+			PlayerTextDrawShow( playerid, KladListicSM[ playerid ][ i ] );
+		}
+
+		for( new i = 0; i < 24; i ++ ) {
+
+			PlayerTextDrawShow( playerid, KladionicaSM[ playerid ][ i ] );
+		}
+		MojListicPrikazan[ playerid ] = true;
+
+	}
+	else if( show == false ) {
+
+		for( new i = 0; i < 9; i++ ) {
+
+			PlayerTextDrawHide( playerid, KladListicSM[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, KladListicSM[ playerid ][ i ] );
+			KladListicSM[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+
+		for( new i = 0; i < 24; i ++) {
+
+			PlayerTextDrawHide( playerid, KladionicaSM[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, KladionicaSM[ playerid ][ i ] );
+			KladionicaSM[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+		
+		MojListicPrikazan[ playerid ] = false;
+	}
+}
+
+
+
+
+
+
+
+
+stock KladionicaTDControl( playerid, bool:show ) {
+
+	if( show == true ) {
+
+		KladionicaSM[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 525.125000, 143.250000, "usebox");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 0 ], 0.000000, 19.127779);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 0 ], 108.000000, 0.000000);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 0 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawUseBox(playerid, KladionicaSM[ playerid ][ 0 ], true);
+		PlayerTextDrawBoxColor(playerid, KladionicaSM[ playerid ][ 0 ], 102);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		
+		KladionicaSM[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 122.666717, 170.737823, "POCETAK UTAKMICE");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 1 ], 0.194444, 1.216711);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 1 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 1 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		
+
+		KladionicaSM[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid, 110.000000, 186.083328, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 2 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 2 ], 413.125000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 2 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 2 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 2 ], 4);
+
+		KladionicaSM[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid, 110.375000, 167.833374, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 3 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 3 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 3 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 3 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 3 ], 4);
+
+		KladionicaSM[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid, 266.125000, 186.750015, "Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manches");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 4 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 4 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 4 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 4 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 4 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 4 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 4 ], 1);
+
+		KladionicaSM[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid, 114.500000, 187.500045, "29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 5 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 5 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 5 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 5 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+
+		KladionicaSM[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid, 381.500000, 187.166671, "Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manches");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 6 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 6 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 6 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 6 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 6 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 6 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 6 ], 1);
+
+		KladionicaSM[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid, 480.625000, 187.000030, "1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.5");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 7 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 7 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 7 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 7 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 7 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 7 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 7 ], 1);
+
+		KladionicaSM[ playerid ][ 8 ] = CreatePlayerTextDraw(playerid, 109.500000, 196.249954, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 8 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 8 ], 413.125000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 8 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 8 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 8 ], 4);
+
+		KladionicaSM[ playerid ][ 9 ] = CreatePlayerTextDraw(playerid, 109.250000, 204.249938, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 9 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 9 ], 413.750000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 9 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 9 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 9 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 9 ], 4);
+
+		KladionicaSM[ playerid ][ 10 ] = CreatePlayerTextDraw(playerid, 109.625000, 212.833236, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 10 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 10 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 10 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 10 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 10 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 10 ], 4);
+
+		KladionicaSM[ playerid ][ 11 ] = CreatePlayerTextDraw(playerid, 110.625000, 221.999908, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 11 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 11 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 11 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 11 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 11 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 11 ], 4);
+
+		KladionicaSM[ playerid ][ 12 ] = CreatePlayerTextDraw(playerid, 109.750000, 229.999908, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 12 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 12 ], 413.750000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 12 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 12 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 12 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 12 ], 4);
+
+		KladionicaSM[ playerid ][ 13 ] = CreatePlayerTextDraw(playerid, 109.500000, 238.583175, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 13 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 13 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 13 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 13 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 13 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 13 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 13 ], 4);
+
+		KladionicaSM[ playerid ][ 14 ] = CreatePlayerTextDraw(playerid, 110.500000, 245.999816, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 14 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 14 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 14 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 14 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 14 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 14 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 14 ], 4);
+
+		KladionicaSM[ playerid ][ 15 ] = CreatePlayerTextDraw(playerid, 245.888824, 170.742141, "DOMACIN");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 15 ], 0.194444, 1.216711);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 15 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 15 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 15 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 15 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		
+		KladionicaSM[ playerid ][ 16 ] = CreatePlayerTextDraw(playerid, 109.000000, 254.583099, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 16 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 16 ], 414.375000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 16 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 16 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 16 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 16 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 16 ], 4);
+
+		KladionicaSM[ playerid ][ 17 ] = CreatePlayerTextDraw(playerid, 110.625000, 263.166473, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 17 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 17 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 17 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 17 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 17 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 17 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 17 ], 4);
+
+		KladionicaSM[ playerid ][ 18 ] = CreatePlayerTextDraw(playerid, 111.000000, 272.333190, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 18 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 18 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 18 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 18 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 18 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 18 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 18 ], 4);
+
+		KladionicaSM[ playerid ][ 19 ] = CreatePlayerTextDraw(playerid, 358.444305, 170.248870, "GOSTUJUCI");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 19 ], 0.194444, 1.216711);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 19 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 19 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 19 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 19 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		
+		KladionicaSM[ playerid ][ 20 ] = CreatePlayerTextDraw(playerid, 450.666595, 171.235488, "1   X   2");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 20 ], 0.407777, 1.047466);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 20 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 20 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 20 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 20 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+		
+		KladionicaSM[ playerid ][ 21 ] = CreatePlayerTextDraw(playerid, 261.777709, 147.839889, "W~w~Win Kladionica");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 21 ], 0.449999, 1.600000);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 21 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 21 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 21 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 21 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		
+		KladionicaSM[ playerid ][ 22 ] = CreatePlayerTextDraw(playerid, 422.222167, 303.644409, "For all gamers");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 22 ], 0.350888, 0.684089);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 22 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 22 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 22 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 22 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+
+		KladionicaSM[ playerid ][ 23 ] = CreatePlayerTextDraw(playerid, 118.333267, 306.137725, "www.wwin.rs");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 23 ], 0.349555, 0.629333);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 23 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 23 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 23 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 23 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		
+		KladionicaSM[ playerid ][ 24 ] = CreatePlayerTextDraw(playerid, 208.125000, 168.583343, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 24 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 24 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 24 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 24 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 24 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 24 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 24 ], 4);
+
+		KladionicaSM[ playerid ][ 25 ] = CreatePlayerTextDraw(playerid, 322.875000, 167.833328, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 25 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 25 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 25 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 25 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 25 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 25 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 25 ], 4);
+
+		KladionicaSM[ playerid ][ 26 ] = CreatePlayerTextDraw(playerid, 439.500000, 167.083343, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 26 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 26 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 26 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 26 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 26 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 26 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 26 ], 4);
+
+		KladionicaSM[ playerid ][ 27 ] = CreatePlayerTextDraw(playerid, 465.500000, 167.500015, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 27 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 27 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 27 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 27 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 27 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 27 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 27 ], 4);
+
+		KladionicaSM[ playerid ][ 28 ] = CreatePlayerTextDraw(playerid, 491.500000, 168.500015, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 28 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 28 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 28 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 28 ],-16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 28 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 28 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 28 ], 4);
+
+		KladionicaSM[ playerid ][ 29 ] = CreatePlayerTextDraw(playerid, 517.750000, 168.500015, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 29 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 29 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 29 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 29 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 29 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 29 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 29 ], 4);
+
+		KladionicaSM[ playerid ][ 30 ] = CreatePlayerTextDraw(playerid, 113.750000, 167.749984, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 30 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 30 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 30 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 30 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 30 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 30 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 30 ], 4);
+
+		KladionicaSM[ playerid ][ 31 ] = CreatePlayerTextDraw(playerid, 321.333221, 302.648651, "UPLATA");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 31 ], 0.616666, 1.017599);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 31 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 31 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 31 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 31 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 31 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 31 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 31 ], 1);
+		PlayerTextDrawSetSelectable(playerid, KladionicaSM[ playerid ][ 31 ], true);
+		
+		
+		
+		
+		
+		new str[ 256 ];
+		
+		format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+			bettingInfo[ Parovi[ 0 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 1 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 2 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 3 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 4 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 5 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 6 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 7 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 8 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ Parovi[ 9 ][ parID ][ 0 ] ][ teamName ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+		
+		format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+			bettingInfo[ Parovi[ 0 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 1 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 2 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 3 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 4 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 5 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 6 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 7 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 8 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ Parovi[ 9 ][ parID ][ 1 ] ][ teamName ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+		
+		format( str, sizeof( str ), "%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f~n~%.2f %.2f %.2f",
+			Parovi[ 0 ][ Kvota ][ 0 ], Parovi[ 0 ][ Kvota ][ 2 ], Parovi[ 0 ][ Kvota ][ 1 ],
+			Parovi[ 1 ][ Kvota ][ 0 ], Parovi[ 1 ][ Kvota ][ 2 ], Parovi[ 1 ][ Kvota ][ 1 ],
+			Parovi[ 2 ][ Kvota ][ 0 ], Parovi[ 2 ][ Kvota ][ 2 ], Parovi[ 2 ][ Kvota ][ 1 ],
+			Parovi[ 3 ][ Kvota ][ 0 ], Parovi[ 3 ][ Kvota ][ 2 ], Parovi[ 3 ][ Kvota ][ 1 ],
+			Parovi[ 4 ][ Kvota ][ 0 ], Parovi[ 4 ][ Kvota ][ 2 ], Parovi[ 4 ][ Kvota ][ 1 ],
+			Parovi[ 5 ][ Kvota ][ 0 ], Parovi[ 5 ][ Kvota ][ 2 ], Parovi[ 5 ][ Kvota ][ 1 ],
+			Parovi[ 6 ][ Kvota ][ 0 ], Parovi[ 6 ][ Kvota ][ 2 ], Parovi[ 6 ][ Kvota ][ 1 ],
+			Parovi[ 7 ][ Kvota ][ 0 ], Parovi[ 7 ][ Kvota ][ 2 ], Parovi[ 7 ][ Kvota ][ 1 ],
+			Parovi[ 8 ][ Kvota ][ 0 ], Parovi[ 8 ][ Kvota ][ 2 ], Parovi[ 8 ][ Kvota ][ 1 ],
+			Parovi[ 9 ][ Kvota ][ 0 ], Parovi[ 9 ][ Kvota ][ 2 ], Parovi[ 9 ][ Kvota ][ 1 ]
+		);
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+		
+		new hour, minute, second, day, year, month;
+		getdate( year, month, day );
+		gettimeEx( hour, minute, second );
+		FixHour( hour );
+		hour = shifthour;
+		
+		format( str, sizeof( str ), "%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30~n~%d.%d.%d %02d:30",
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour,
+			day, month, year, hour );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+		
+		for( new i = 0; i < 32; i ++ ) {
+		
+			PlayerTextDrawShow( playerid, KladionicaSM[ playerid ][ i ] );
+		}
+		SelectTextDraw( playerid, UGBOJA );
+		
+		ListaPrikazana[ playerid ] = true;
+
+	}
+	else if( show == false ) {
+	
+		for( new i = 0; i < 32; i ++) {
+		
+			PlayerTextDrawHide( playerid, KladionicaSM[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, KladionicaSM[ playerid ][ i ] );
+			KladionicaSM[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+		CancelSelectTextDraw( playerid );
+		
+		ListaPrikazana[ playerid ] = false;
+	}
+}
+
+stock RezultatiTDControl( playerid, bool:show ) {
+
+	if( show == true ) {
+
+		KladionicaSM[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 525.125000, 143.250000, "usebox");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 0 ], 0.000000, 19.127779);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 0 ], 108.000000, 0.000000);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 0 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawUseBox(playerid, KladionicaSM[ playerid ][ 0 ], true);
+		PlayerTextDrawBoxColor(playerid, KladionicaSM[ playerid ][ 0 ], 102);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 0 ], 0);
+
+		KladionicaSM[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 122.666717, 170.737823, "POCETAK UTAKMICE");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 1 ], 0.194444, 1.216711);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 1 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 1 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 1 ], 1);
+		
+		KladionicaSM[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid, 110.000000, 186.083328, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 2 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 2 ], 413.125000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 2 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 2 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 2 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 2 ], 4);
+
+		KladionicaSM[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid, 110.375000, 167.833374, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 3 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 3 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 3 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 3 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 3 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 3 ], 4);
+
+		KladionicaSM[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid, 266.125000, 186.750015, "Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manches");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 4 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 4 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 4 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 4 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 4 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 4 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 4 ], 1);
+
+		KladionicaSM[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid, 114.500000, 187.500045, "29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20:45~n~29.09.2015 20");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 5 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 5 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 5 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 5 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 5 ], 1);
+
+		KladionicaSM[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid, 381.500000, 187.166671, "Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manchester United~n~Manches");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 6 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 6 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 6 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 6 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 6 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 6 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 6 ], 1);
+
+		KladionicaSM[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid, 480.625000, 187.000030, "1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.50 3.00~n~1.40 2.5");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 7 ], 0.249374, 0.940831);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 7 ], 2);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 7 ], -1 );
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 7 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 7 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 7 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 7 ], 1);
+
+		KladionicaSM[ playerid ][ 8 ] = CreatePlayerTextDraw(playerid, 109.500000, 196.249954, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 8 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 8 ], 413.125000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 8 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 8 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 8 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 8 ], 4);
+
+		KladionicaSM[ playerid ][ 9 ] = CreatePlayerTextDraw(playerid, 109.250000, 204.249938, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 9 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 9 ], 413.750000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 9 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 9 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 9 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 9 ], 4);
+
+		KladionicaSM[ playerid ][ 10 ] = CreatePlayerTextDraw(playerid, 109.625000, 212.833236, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 10 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 10 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 10 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 10 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 10 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 10 ], 4);
+
+		KladionicaSM[ playerid ][ 11 ] = CreatePlayerTextDraw(playerid, 110.625000, 221.999908, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 11 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 11 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 11 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 11 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 11 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 11 ], 4);
+
+		KladionicaSM[ playerid ][ 12 ] = CreatePlayerTextDraw(playerid, 109.750000, 229.999908, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 12 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 12 ], 413.750000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 12 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 12 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 12 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 12 ], 4);
+
+		KladionicaSM[ playerid ][ 13 ] = CreatePlayerTextDraw(playerid, 109.500000, 238.583175, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 13 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 13 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 13 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 13 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 13 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 13 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 13 ], 4);
+
+		KladionicaSM[ playerid ][ 14 ] = CreatePlayerTextDraw(playerid, 110.500000, 245.999816, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 14 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 14 ], 413.125000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 14 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 14 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 14 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 14 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 14 ], 4);
+
+		KladionicaSM[ playerid ][ 15 ] = CreatePlayerTextDraw(playerid, 245.888824, 170.742141, "DOMACIN");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 15 ], 0.194444, 1.216711);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 15 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 15 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 15 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 15 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 15 ], 1);
+		
+		KladionicaSM[ playerid ][ 16 ] = CreatePlayerTextDraw(playerid, 109.000000, 254.583099, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 16 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 16 ], 414.375000, -0.583323);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 16 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 16 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 16 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 16 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 16 ], 4);
+
+		KladionicaSM[ playerid ][ 17 ] = CreatePlayerTextDraw(playerid, 110.625000, 263.166473, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 17 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 17 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 17 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 17 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 17 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 17 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 17 ], 4);
+
+		KladionicaSM[ playerid ][ 18 ] = CreatePlayerTextDraw(playerid, 111.000000, 272.333190, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 18 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 18 ], 412.500000, 0.583343);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 18 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 18 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 18 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 18 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 18 ], 4);
+		
+		KladionicaSM[ playerid ][ 19 ] = CreatePlayerTextDraw(playerid, 358.444305, 170.248870, "GOSTUJUCI");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 19 ], 0.194444, 1.216711);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 19 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 19 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 19 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 19 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 19 ], 1);
+		
+		KladionicaSM[ playerid ][ 20 ] = CreatePlayerTextDraw(playerid, 453.000000, 171.583297, "Rezultat");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 20 ], 0.271249, 0.969998);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 20 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 20 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 20 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 20 ], 2);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 20 ], 1);
+
+		KladionicaSM[ playerid ][ 21 ] = CreatePlayerTextDraw(playerid, 261.777709, 147.839889, "W~w~Win Kladionica");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 21 ], 0.449999, 1.600000);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 21 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 21 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 21 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 21 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 21 ], 1);
+		
+		KladionicaSM[ playerid ][ 22 ] = CreatePlayerTextDraw(playerid, 422.222167, 303.644409, "For all gamers");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 22 ], 0.350888, 0.684089);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 22 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 22 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 22 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 22 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 22 ], 1);
+		
+		KladionicaSM[ playerid ][ 23 ] = CreatePlayerTextDraw(playerid, 118.333267, 306.137725, "www.wwin.rs");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 23 ], 0.349555, 0.629333);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 23 ], -1);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 23 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, KladionicaSM[ playerid ][ 23 ], 51);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 23 ], 3);
+		PlayerTextDrawSetProportional(playerid, KladionicaSM[ playerid ][ 23 ], 1);
+		
+		KladionicaSM[ playerid ][ 24 ] = CreatePlayerTextDraw(playerid, 208.125000, 168.583343, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 24 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 24 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 24 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 24 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 24 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 24 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 24 ], 4);
+
+		KladionicaSM[ playerid ][ 25 ] = CreatePlayerTextDraw(playerid, 322.875000, 167.833328, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 25 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 25 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 25 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 25 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 25 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 25 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 25 ], 4);
+
+		KladionicaSM[ playerid ][ 26 ] = CreatePlayerTextDraw(playerid, 439.500000, 167.083343, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 26 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 26 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 26 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 26 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 26 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 26 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 26 ], 4);
+
+		KladionicaSM[ playerid ][ 29 ] = CreatePlayerTextDraw(playerid, 517.750000, 168.500015, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 29 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 29 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 29 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 29 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 29 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 29 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 29 ], 4);
+
+		KladionicaSM[ playerid ][ 30 ] = CreatePlayerTextDraw(playerid, 113.750000, 167.749984, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, KladionicaSM[ playerid ][ 30 ], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, KladionicaSM[ playerid ][ 30 ], 0.625000, 104.416656);
+		PlayerTextDrawAlignment(playerid, KladionicaSM[ playerid ][ 30 ], 1);
+		PlayerTextDrawColor(playerid, KladionicaSM[ playerid ][ 30 ], -16776961);
+		PlayerTextDrawSetShadow(playerid, KladionicaSM[ playerid ][ 30 ], 0);
+		PlayerTextDrawSetOutline(playerid, KladionicaSM[ playerid ][ 30 ], 0);
+		PlayerTextDrawFont(playerid, KladionicaSM[ playerid ][ 30 ], 4);
+
+		new str[ 256 ];
+
+		format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+			bettingInfo[ StariParovi[ 0 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 1 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 2 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 3 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 4 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 5 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 6 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 7 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 8 ][ parID ][ 0 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 9 ][ parID ][ 0 ] ][ teamName ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 4 ], str );
+
+		format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+			bettingInfo[ StariParovi[ 0 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 1 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 2 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 3 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 4 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 5 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 6 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 7 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 8 ][ parID ][ 1 ] ][ teamName ],
+			bettingInfo[ StariParovi[ 9 ][ parID ][ 1 ] ][ teamName ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 6 ], str );
+
+		format( str, sizeof( str ), "%d:%d~n~%d:%d~n~%d:%d~n~%d:%d~n~%d:%d~n~%d:%d~n~%d:%d~n~%d:%d~n~%d:%d~n~%d:%d",
+			StariParovi[ 0 ][ Rezultat ][ 0 ], StariParovi[ 0 ][ Rezultat ][ 1 ],
+			StariParovi[ 1 ][ Rezultat ][ 0 ], StariParovi[ 1 ][ Rezultat ][ 1 ],
+			StariParovi[ 2 ][ Rezultat ][ 0 ], StariParovi[ 2 ][ Rezultat ][ 1 ],
+			StariParovi[ 3 ][ Rezultat ][ 0 ], StariParovi[ 3 ][ Rezultat ][ 1 ],
+			StariParovi[ 4 ][ Rezultat ][ 0 ], StariParovi[ 4 ][ Rezultat ][ 1 ],
+			StariParovi[ 5 ][ Rezultat ][ 0 ], StariParovi[ 5 ][ Rezultat ][ 1 ],
+			StariParovi[ 6 ][ Rezultat ][ 0 ], StariParovi[ 6 ][ Rezultat ][ 1 ],
+			StariParovi[ 7 ][ Rezultat ][ 0 ], StariParovi[ 7 ][ Rezultat ][ 1 ],
+			StariParovi[ 8 ][ Rezultat ][ 0 ], StariParovi[ 8 ][ Rezultat ][ 1 ],
+			StariParovi[ 9 ][ Rezultat ][ 0 ], StariParovi[ 9 ][ Rezultat ][ 1 ]
+			
+		);
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 7 ], str );
+
+		new hour, minute, second, day, year, month;
+		getdate( year, month, day );
+		gettimeEx( hour, minute, second );
+		FixHour( hour );
+		hour = shifthour;
+
+		format( str, sizeof( str ), "%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s~n~%s",
+			StariParovi[ 0 ][ HourPobeda ],
+			StariParovi[ 1 ][ HourPobeda ],
+			StariParovi[ 2 ][ HourPobeda ],
+			StariParovi[ 3 ][ HourPobeda ],
+			StariParovi[ 4 ][ HourPobeda ],
+			StariParovi[ 5 ][ HourPobeda ],
+			StariParovi[ 6 ][ HourPobeda ],
+			StariParovi[ 7 ][ HourPobeda ],
+			StariParovi[ 8 ][ HourPobeda ],
+			StariParovi[ 9 ][ HourPobeda ] );
+
+		PlayerTextDrawSetString( playerid, KladionicaSM[ playerid ][ 5 ], str );
+
+		for( new i = 0; i < 31; i ++ ) {
+
+			PlayerTextDrawShow( playerid, KladionicaSM[ playerid ][ i ] );
+		}
+
+		RezultatiPrikazana[ playerid ] = true;
+
+	}
+	else if( show == false ) {
+
+		for( new i = 0; i < 31; i ++) {
+
+			PlayerTextDrawHide( playerid, KladionicaSM[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, KladionicaSM[ playerid ][ i ] );
+			KladionicaSM[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+
+		RezultatiPrikazana[ playerid ] = false;
+	}
+}
+#endif
+stock TuningTDShow( playerid, bool:show ) {
+
+	if( show == true ) {
+		for( new i = 0; i < 14; i ++ ) {
+			PlayerTextDrawShow( playerid, TuningBuy[ playerid ][ i ] );
+		}
+
+	}
+	else if( show == false ) {
+		for( new i = 0; i < 14; i ++ ) {
+			PlayerTextDrawHide( playerid, TuningBuy[ playerid ][ i ]);
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+
+stock buyWatchTDControl( playerid, bool:show ) {
+
+	if( show == true ) {
+		buyWatch[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid,410.000000, 170.000000, "  ");
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 0 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 0 ], 1);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 0 ], 0.500000, 12.399997);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 0 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 0 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 0 ], 1);
+		PlayerTextDrawUseBox(playerid,buyWatch[ playerid ][ 0 ], 1);
+		PlayerTextDrawBoxColor(playerid,buyWatch[ playerid ][ 0 ], 100);
+		PlayerTextDrawTextSize(playerid,buyWatch[ playerid ][ 0 ], 230.000000, 0.000000);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 0 ], 0);
+
+		buyWatch[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid,230.000000, 165.000000, "  ");
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 1 ], 0 );
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 1 ], 5);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 1 ], 0.500000, 1.000000);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 1 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 1 ], 1);
+		PlayerTextDrawUseBox(playerid,buyWatch[ playerid ][ 1 ], 1);
+		PlayerTextDrawBoxColor(playerid,buyWatch[ playerid ][ 1 ], 255);
+		PlayerTextDrawTextSize(playerid,buyWatch[ playerid ][ 1 ], 180.000000, 100.000000);
+		PlayerTextDrawSetPreviewModel(playerid, buyWatch[ playerid ][ 1 ], 19039);
+		PlayerTextDrawSetPreviewRot(playerid, buyWatch[ playerid ][ 1 ], 0.000000, 90.000000, 10.000000, 1.000000);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 1 ], 0);
+
+		buyWatch[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid,319.000000, 256.000000, "Rolex Datejust - 521$");
+		PlayerTextDrawAlignment(playerid,buyWatch[ playerid ][ 2 ], 2);
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 2 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 2 ], 2);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 2 ], 0.300000, 1.000000);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 2 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 2 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 2 ], 1);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 2 ], 0);
+
+		buyWatch[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid,319.000000, 269.000000, "kupi_sat");
+		PlayerTextDrawTextSize(playerid,buyWatch[ playerid ][ 3 ], 40.000000, 20.000000);
+		PlayerTextDrawAlignment(playerid,buyWatch[ playerid ][ 3 ], 2);
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 3 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 3 ], 2);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 3 ], 0.300000, 1.000000);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 3 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 3 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 3 ], 1);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 3 ], 1);
+
+		buyWatch[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid,382.000000, 270.000000, "ld_beat:right");
+		PlayerTextDrawAlignment(playerid,buyWatch[ playerid ][ 4 ], 2);
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 4 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 4 ], 4);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 4 ], 0.300000, 1.000000);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 4 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 4 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 4 ], 1);
+		PlayerTextDrawUseBox(playerid,buyWatch[ playerid ][ 4 ], 1);
+		PlayerTextDrawBoxColor(playerid,buyWatch[ playerid ][ 4 ], 255);
+		PlayerTextDrawTextSize(playerid,buyWatch[ playerid ][ 4 ], 20.000000, 10.000000);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 4 ], 1);
+
+		buyWatch[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid,236.000000, 270.000000, "ld_beat:left");
+		PlayerTextDrawAlignment(playerid,buyWatch[ playerid ][ 5 ], 2);
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 5 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 5 ], 4);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 5 ], 0.300000, 1.000000);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 5 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 5 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 5 ], 1);
+		PlayerTextDrawUseBox(playerid,buyWatch[ playerid ][ 5 ], 1);
+		PlayerTextDrawBoxColor(playerid,buyWatch[ playerid ][ 5 ], 255);
+		PlayerTextDrawTextSize(playerid,buyWatch[ playerid ][ 5 ], 20.000000, 10.000000);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 5 ], 1);
+
+		buyWatch[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid,316.000000, 264.000000, "-");
+		PlayerTextDrawAlignment(playerid,buyWatch[ playerid ][ 6 ], 2);
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 6 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 6 ], 2);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 6 ], 13.700016, 0.499999);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 6 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 6 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 6 ], 1);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 6 ], 0);
+		
+		buyWatch[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid,384.000000, 169.000000, "ld_beat:cross");
+		PlayerTextDrawBackgroundColor(playerid,buyWatch[ playerid ][ 7 ], 255);
+		PlayerTextDrawFont(playerid,buyWatch[ playerid ][ 7 ], 4);
+		PlayerTextDrawLetterSize(playerid,buyWatch[ playerid ][ 7 ], 0.500000, 1.000000);
+		PlayerTextDrawColor(playerid,buyWatch[ playerid ][ 7 ], -1);
+		PlayerTextDrawSetOutline(playerid,buyWatch[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetProportional(playerid,buyWatch[ playerid ][ 7 ], 1);
+		PlayerTextDrawSetShadow(playerid,buyWatch[ playerid ][ 7 ], 1);
+		PlayerTextDrawUseBox(playerid,buyWatch[ playerid ][ 7 ], 1);
+		PlayerTextDrawBoxColor(playerid,buyWatch[ playerid ][ 7 ], 255);
+		PlayerTextDrawTextSize(playerid,buyWatch[ playerid ][ 7 ], 21.000000, 11.000000);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetSelectable(playerid,buyWatch[ playerid ][ 7 ], 1);
+		
+		for( new i = 0; i < 8; i++ ) {
+			PlayerTextDrawShow( playerid, buyWatch[ playerid ][ i ] );
+		}
+		SelectTextDraw( playerid, UGBOJA );
+	}
+	else if( show == false ) {
+		for( new i = 0; i < 8; i ++) {
+			PlayerTextDrawHide( playerid, buyWatch[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, buyWatch[ playerid ][ i ] );
+			buyWatch[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+		CancelSelectTextDraw( playerid );
+	}
+}
+//------------------------------------------------------------------------------
+stock atmLoadingTDControl( playerid, bool:show ) {
+	
+	if( show == true ) {
+	
+		atmrobLoading[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 283.125000, 179.666656, "");
+		PlayerTextDrawLetterSize(playerid, atmrobLoading[ playerid ][ 0 ], 0.449999, 1.600000);
+		PlayerTextDrawAlignment(playerid, atmrobLoading[ playerid ][ 0 ], 1);
+		PlayerTextDrawColor(playerid, atmrobLoading[ playerid ][ 0 ], -1);
+		PlayerTextDrawSetShadow(playerid, atmrobLoading[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetOutline(playerid, atmrobLoading[ playerid ][ 0 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, atmrobLoading[ playerid ][ 0 ], 51);
+		PlayerTextDrawFont(playerid, atmrobLoading[ playerid ][ 0 ], 2);
+		PlayerTextDrawSetProportional(playerid, atmrobLoading[ playerid ][ 0 ], 1);
+
+		atmrobLoading[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 309.750000, 193.499969, "");
+		PlayerTextDrawLetterSize(playerid, atmrobLoading[ playerid ][ 1 ], 0.371249, 1.150831);
+		PlayerTextDrawAlignment(playerid, atmrobLoading[ playerid ][ 1 ], 1);
+		PlayerTextDrawColor(playerid, atmrobLoading[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetShadow(playerid, atmrobLoading[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetOutline(playerid, atmrobLoading[ playerid ][ 1 ], 1);
+		PlayerTextDrawBackgroundColor(playerid, atmrobLoading[ playerid ][ 1 ], 51);
+		PlayerTextDrawFont(playerid, atmrobLoading[ playerid ][ 1 ], 2);
+		PlayerTextDrawSetProportional(playerid, atmrobLoading[ playerid ][ 1 ], 1);
+	
+		for( new i = 0; i < 2; i++) {
+			PlayerTextDrawShow( playerid, atmrobLoading[ playerid ][ i ] );
+		}
+	}
+	else if( show == false ) {
+		for( new i = 0; i < 2; i ++) {
+			PlayerTextDrawHide( playerid, atmrobLoading[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, atmrobLoading[ playerid ][ i ] );
+			atmrobLoading[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+		}
+	}
+}/*
+stock atmTDControl( playerid, bool:show ) {
+	
+	if( show == true ) {
+		atmTD[ playerid ][ 0 ] = CreatePlayerTextDraw( playerid, 539.000000, 344.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 0 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 0 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 0 ], 0.500000, 8.600002);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 0 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 0 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 0 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 0 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 0 ], 85);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 0 ], 170.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 0 ], 0);
+
+		atmTD[ playerid ][ 1 ] = CreatePlayerTextDraw( playerid, 165.000000, 353.000000, "1");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 1 ], 0);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 1 ], 5);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 1 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 1 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 1 ], 0);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 1 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 1 ], 255);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 1 ], 155.000000, 71.000000);
+		PlayerTextDrawSetPreviewModel( playerid, atmTD[ playerid ][ 1 ], 335);
+		PlayerTextDrawSetPreviewRot( playerid, atmTD[ playerid ][ 1 ], 0.0, 0.0, 0.0, 1.3 );
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 1 ], 1);
+
+		atmTD[ playerid ][ 2 ] = CreatePlayerTextDraw( playerid, 300.000000, 330.000000, "2");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 2 ], 0);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 2 ], 5);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 2 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 2 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 2 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 2 ], 0);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 2 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 2 ], 255);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 2 ], 155.000000, 94.000000);
+		PlayerTextDrawSetPreviewModel( playerid, atmTD[ playerid ][ 2 ], 2190 );
+		PlayerTextDrawSetPreviewRot( playerid, atmTD[ playerid ][ 2 ], 0.0, 0.0, 180.0, 2.0);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 2 ], 1);
+
+		atmTD[ playerid ][ 3 ] = CreatePlayerTextDraw( playerid, 392.000000, 326.000000, "3");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 3 ], 0);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 3 ], 5);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 3 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 3 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 3 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 3 ], 0);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 3 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 3 ], 255);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 3 ], 155.000000, 94.000000);
+		PlayerTextDrawSetPreviewModel( playerid, atmTD[ playerid ][ 3 ], 1212 );
+		PlayerTextDrawSetPreviewRot( playerid, atmTD[ playerid ][ 3 ], -50.0, 0.0, 0.0, 2.0);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 3 ], 1);
+
+		atmTD[ playerid ][ 4 ] = CreatePlayerTextDraw( playerid, 539.000000, 344.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 4 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 4 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 4 ], 0.500000, -0.399996);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 4 ], UGBOJA );
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 4 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 4 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 4 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 4 ], 865730559);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 4 ], 170.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 4 ], 0);
+
+		atmTD[ playerid ][ 5 ] = CreatePlayerTextDraw( playerid, 539.000000, 427.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 5 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 5 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 5 ], 0.500000, -0.699997);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 5 ], UGBOJA );
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 5 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 5 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 5 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 5 ], 865730559);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 5 ], 170.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 5 ], 0);
+
+		atmTD[ playerid ][ 6 ] = CreatePlayerTextDraw( playerid, 176.000000, 345.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 6 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 6 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 6 ], 0.500000, 8.500001);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 6 ], UGBOJA );
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 6 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 6 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 6 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 6 ], 865730559);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 6 ], 170.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 6 ], 0);
+
+		atmTD[ playerid ][ 7 ] = CreatePlayerTextDraw( playerid, 539.000000, 344.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 7 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 7 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 7 ], 0.500000, 8.600003);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 7 ], UGBOJA );
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 7 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 7 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 7 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 7 ], 865730559);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 7 ], 533.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 7 ], 0);
+
+		atmTD[ playerid ][ 8 ] = CreatePlayerTextDraw( playerid, 281.000000, 344.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 8 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 8 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 8 ], 0.500000, 8.600003);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 8 ], UGBOJA );
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 8 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 8 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 8 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 8 ], 865730559);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 8 ], 275.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 8 ], 0);
+
+		atmTD[ playerid ][ 9 ] = CreatePlayerTextDraw( playerid, 412.000000, 344.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 9 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 9 ], 1);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 9 ], 0.500000, 8.600003);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 9 ], UGBOJA );
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 9 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 9 ], 1);
+		PlayerTextDrawUseBox( playerid, atmTD[ playerid ][ 9 ], 1);
+		PlayerTextDrawBoxColor( playerid, atmTD[ playerid ][ 9 ], 865730559);
+		PlayerTextDrawTextSize( playerid, atmTD[ playerid ][ 9 ], 406.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 9 ], 0);
+
+		atmTD[ playerid ][ 10 ] = CreatePlayerTextDraw( playerid, 190.000000, 407.000000, "PRESECI ZICE");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 10 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 10 ], 2);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 10 ], 0.270000, 1.200000);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 10 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 10 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 10 ], 0); // 13
+
+		atmTD[ playerid ][ 11 ] = CreatePlayerTextDraw( playerid, 295.000000, 407.000000, "HAKOVANJE ATMA");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 11 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 11 ], 2);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 11 ], 0.270000, 1.200000);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 11 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 11 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 11 ], 0);
+
+		atmTD[ playerid ][ 12 ] = CreatePlayerTextDraw( playerid, 430.000000, 407.000000, "KRADJA NOVCA");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 12 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 12 ], 2);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 12 ], 0.270000, 1.200000);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 12 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 12 ], 1);
+		PlayerTextDrawSetShadow( playerid, atmTD[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 12 ], 0);
+
+		atmTD[ playerid ][ 13 ] = CreatePlayerTextDraw( playerid, 289.000000, 332.000000, "Pljacka bankomata");
+		PlayerTextDrawBackgroundColor( playerid, atmTD[ playerid ][ 13 ], 255);
+		PlayerTextDrawFont( playerid, atmTD[ playerid ][ 13 ], 0);
+		PlayerTextDrawLetterSize( playerid, atmTD[ playerid ][ 13 ], 0.479999, 1.699998);
+		PlayerTextDrawColor( playerid, atmTD[ playerid ][ 13 ], -1);
+		PlayerTextDrawSetOutline( playerid, atmTD[ playerid ][ 13 ], 1);
+		PlayerTextDrawSetProportional( playerid, atmTD[ playerid ][ 13 ], 1);
+		PlayerTextDrawSetSelectable( playerid, atmTD[ playerid ][ 13 ], 0);
+	
+		for( new i = 0; i < 14; i++) {
+			PlayerTextDrawShow( playerid, atmTD[ playerid ][ i ] );
+		}
+		ShowedAtmTD[ playerid ] = true;
+	}
+	else if( show == false ) {
+		ShowedAtmTD[ playerid ] = false;
+		for( new i = 0; i < 14; i ++) {
+			PlayerTextDrawHide( playerid, atmTD[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, atmTD[ playerid ][ i ] );
+			atmTD[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+			CancelSelectTextDraw( playerid );
+		}
+	}
+}*/
+//------------------------------------------------------------------------------
+stock PizzaMenuTDControl( playerid, bool:show ) {
+	if( show == true ) {
+		PizzaMenu[ playerid ][ 0 ] = CreatePlayerTextDraw(playerid, 543.000000, 89.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 0 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 0 ], 1);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 0 ], 0.500000, 33.099998);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 0 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 0 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 0 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 0 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 0 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 0 ], -1728039937);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 0 ], 95.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 0 ], 0);
+
+		PizzaMenu[ playerid ][ 1 ] = CreatePlayerTextDraw(playerid, 543.000000, 89.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 1 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 1 ], 1);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 1 ], 0.500000, -2.499989);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 1 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 1 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 1 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 1 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 1 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 1 ], -13057);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 1 ], 95.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 1 ], 0);
+
+		PizzaMenu[ playerid ][ 2 ] = CreatePlayerTextDraw(playerid, 219.000000, 70.000000, "Have it your way - eats");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 2 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 2 ], 1);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 2 ], 0.430000, 1.399999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 2 ], -1728039937);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 2 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 2 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 2 ], 0);
+
+		PizzaMenu[ playerid ][ 3 ] = CreatePlayerTextDraw(playerid, 480.000000, 70.000000, "los santos,~n~   winewood");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 3 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 3 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 3 ], 0.219999, 0.799998);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 3 ], -1728039937);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 3 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 3 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 3 ], 0);
+
+		PizzaMenu[ playerid ][ 4 ] = CreatePlayerTextDraw(playerid, 543.000000, 179.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 4 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 4 ], 1);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 4 ], 0.500000, -0.599991);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 4 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 4 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 4 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 4 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 4 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 4 ], -13057);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 4 ], 95.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 4 ], 0);
+
+		PizzaMenu[ playerid ][ 5 ] = CreatePlayerTextDraw(playerid, 543.000000, 284.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 5 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 5 ], 1);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 5 ], 0.500000, -0.599991);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 5 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 5 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 5 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 5 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 5 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 5 ], -13057);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 5 ], 95.000000, 0.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 5 ], 0);
+
+		PizzaMenu[ playerid ][ 6 ] = CreatePlayerTextDraw(playerid, 313.000000, 89.000000, "_");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 6 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 6 ], 1);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 6 ], 0.400000, 33.099998);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 6 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 6 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 6 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 6 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 6 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 6 ], -13057);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 6 ], 307.000000, -5.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 6 ], 0);
+
+		PizzaMenu[ playerid ][ 7 ] = CreatePlayerTextDraw(playerid, 101.000000, 32.000000, "1");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 7 ], 0);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 7 ], 5);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 7 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 7 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 7 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 7 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 7 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 7 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 7 ], 255);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 7 ], 221.000000, 140.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 7 ], 1);
+		PlayerTextDrawSetPreviewModel( playerid, PizzaMenu[ playerid ][ 7 ], 2218);
+		PlayerTextDrawSetPreviewRot( playerid, PizzaMenu[ playerid ][ 7 ], 10.0, -10.0, 220.0, 1.0);
+
+		PizzaMenu[ playerid ][ 8 ] = CreatePlayerTextDraw(playerid, 227.000000, 114.000000, "Capriciosa~n~cedevita~n~pomfrit");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 8 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 8 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 8 ], 0.219999, 0.899999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 8 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 8 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 8 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 8 ], 0);
+
+		PizzaMenu[ playerid ][ 9 ] = CreatePlayerTextDraw(playerid, 240.000000, 154.000000, "68.99 $");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 9 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 9 ], 3);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 9 ], 0.470000, 1.799999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 9 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 9 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 9 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 9 ], 0);
+
+		PizzaMenu[ playerid ][ 10 ] = CreatePlayerTextDraw(playerid, 315.000000, 32.000000, "2");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 10 ], 0);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 10 ], 5);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 10 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 10 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 10 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 10 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 10 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 10 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 10 ], 255);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 10 ], 221.000000, 140.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 10 ], 1);
+		PlayerTextDrawSetPreviewModel( playerid, PizzaMenu[ playerid ][ 10 ], 2219);
+		PlayerTextDrawSetPreviewRot( playerid, PizzaMenu[ playerid ][ 10 ], 10.0, -10.0, 220.0, 1.0);
+
+		PizzaMenu[ playerid ][ 11 ] = CreatePlayerTextDraw(playerid, 439.000000, 114.000000, "Margarita~n~coca cola~n~pomfrit");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 11 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 11 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 11 ], 0.219999, 0.899999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 11 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 11 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 11 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 11 ], 0);
+
+		PizzaMenu[ playerid ][ 12 ] = CreatePlayerTextDraw(playerid, 463.000000, 154.000000, "79.49 $");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 12 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 12 ], 3);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 12 ], 0.470000, 1.799999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 12 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 12 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 12 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 12 ], 0);
+
+		PizzaMenu[ playerid ][ 13 ] = CreatePlayerTextDraw(playerid, 101.000000, 132.000000, "3");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 13 ], 0);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 13 ], 5);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 13 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 13 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 13 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 13 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 13 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 13 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 13 ], 255);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 13 ], 221.000000, 140.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 13 ], 1);
+		PlayerTextDrawSetPreviewModel( playerid, PizzaMenu[ playerid ][ 13 ], 2220);
+		PlayerTextDrawSetPreviewRot( playerid, PizzaMenu[ playerid ][ 13 ], 10.0, -10.0, 220.0, 1.0);
+
+		PizzaMenu[ playerid ][ 14 ] = CreatePlayerTextDraw(playerid, 236.000000, 212.000000, "Siciliana~n~juice~n~pomfrit");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 14 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 14 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 14 ], 0.219999, 0.899999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 14 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 14 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 14 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 14 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 14 ], 0);
+
+		PizzaMenu[ playerid ][ 15 ] = CreatePlayerTextDraw(playerid, 232.000000, 258.000000, "80.99 $");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 15 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 15 ], 3);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 15 ], 0.470000, 1.799999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 15 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 15 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 15 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 15 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 15 ], 0);
+
+		PizzaMenu[ playerid ][ 16 ] = CreatePlayerTextDraw(playerid, 314.000000, 132.000000, "4");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 16 ], 0);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 16 ], 5);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 16 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 16 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 16 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 16 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 16 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 16 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 16 ], 255);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 16 ], 221.000000, 140.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 16 ], 1);
+		PlayerTextDrawSetPreviewModel( playerid, PizzaMenu[ playerid ][ 16 ], 2218);
+		PlayerTextDrawSetPreviewRot( playerid, PizzaMenu[ playerid ][ 16 ], 10.0, -10.0, 220.0, 1.0);
+
+
+		PizzaMenu[ playerid ][ 17 ] = CreatePlayerTextDraw(playerid, 436.000000, 212.000000, "Vesuvio~n~cedevita~n~pomfrit");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 17 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 17 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 17 ], 0.219999, 0.899999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 17 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 17 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 17 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 17 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 17 ], 0);
+
+		PizzaMenu[ playerid ][ 18 ] = CreatePlayerTextDraw(playerid, 462.000000, 258.000000, "89.49 $");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 18 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 18 ], 3);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 18 ], 0.470000, 1.799999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 18 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 18 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 18 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 18 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 18 ], 0);
+
+		PizzaMenu[ playerid ][ 19 ] = CreatePlayerTextDraw(playerid, 101.000000, 243.000000, "5");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 19 ], 0);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 19 ], 5);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 19 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 19 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 19 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 19 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 19 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 19 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 19 ], 255);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 19 ], 221.000000, 140.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 19 ], 1);
+		PlayerTextDrawSetPreviewModel( playerid, PizzaMenu[ playerid ][ 19 ], 2219);
+		PlayerTextDrawSetPreviewRot( playerid, PizzaMenu[ playerid ][ 19 ], 0.0, -10.0, 220.0, 1.0);
+
+		PizzaMenu[ playerid ][ 20 ] = CreatePlayerTextDraw(playerid, 236.000000, 324.000000, "Quattro stagione~n~juice~n~pomfrit");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 20 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 20 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 20 ], 0.219999, 0.899999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 20 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 20 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 20 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 20 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 20 ], 0);
+
+		PizzaMenu[ playerid ][ 21 ] = CreatePlayerTextDraw(playerid, 232.000000, 364.000000, "98.49 $");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 21 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 21 ], 3);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 21 ], 0.470000, 1.799999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 21 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 21 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 21 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 21 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 21 ], 0);
+
+		PizzaMenu[ playerid ][ 22 ] = CreatePlayerTextDraw(playerid, 314.000000, 243.000000, "6");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 22 ], 0);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 22 ], 5);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 22 ], 0.500000, 1.000000);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 22 ], -1);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 22 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 22 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 22 ], 1);
+		PlayerTextDrawUseBox( playerid, PizzaMenu[ playerid ][ 22 ], 1);
+		PlayerTextDrawBoxColor( playerid, PizzaMenu[ playerid ][ 22 ], 255);
+		PlayerTextDrawTextSize( playerid, PizzaMenu[ playerid ][ 22 ], 221.000000, 140.000000);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 22 ], 1);
+		PlayerTextDrawSetPreviewModel( playerid, PizzaMenu[ playerid ][ 22 ], 2220);
+		PlayerTextDrawSetPreviewRot( playerid, PizzaMenu[ playerid ][ 22 ], 0.0, -10.0, 220.0, 1.0);
+
+		PizzaMenu[ playerid ][ 23 ] = CreatePlayerTextDraw(playerid, 444.000000, 324.000000, "Napoletana~n~coca cola~n~pomfrit");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 23 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 23 ], 2);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 23 ], 0.219999, 0.899999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 23 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 23 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 23 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 23 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 23 ], 0);
+
+		PizzaMenu[ playerid ][ 24 ] = CreatePlayerTextDraw(playerid, 455.000000, 364.000000, "108.49 $");
+		PlayerTextDrawBackgroundColor( playerid, PizzaMenu[ playerid ][ 24 ], 255);
+		PlayerTextDrawFont( playerid, PizzaMenu[ playerid ][ 24 ], 3);
+		PlayerTextDrawLetterSize( playerid, PizzaMenu[ playerid ][ 24 ], 0.470000, 1.799999);
+		PlayerTextDrawColor( playerid, PizzaMenu[ playerid ][ 24 ], -13057);
+		PlayerTextDrawSetOutline( playerid, PizzaMenu[ playerid ][ 24 ], 0);
+		PlayerTextDrawSetProportional( playerid, PizzaMenu[ playerid ][ 24 ], 1);
+		PlayerTextDrawSetShadow( playerid, PizzaMenu[ playerid ][ 24 ], 0);
+		PlayerTextDrawSetSelectable( playerid, PizzaMenu[ playerid ][ 24 ], 0);
+		
+		for( new i = 0; i < 25; i++) {
+			PlayerTextDrawShow( playerid, PizzaMenu[ playerid ][ i ] );
+		}
+	}
+	else if( show == false ) {
+		for( new i = 0; i < 25; i ++) {
+			PlayerTextDrawHide( playerid, PizzaMenu[ playerid ][ i ] );
+			PlayerTextDrawDestroy( playerid, PizzaMenu[ playerid ][ i ] );
+			PizzaMenu[ playerid ][ i ] = PlayerText:INVALID_TEXT_DRAW;
+			CancelSelectTextDraw( playerid );
+		}
+	}
+}
+//------------------------------------------------------------------------------
+/*stock StatsTDsControl( playerid, bool:show )
+{
+	if( show == true )
+	{
+	
+		StatsTDs[0][playerid] = CreatePlayerTextDraw(playerid, 530.000000, 99.064445, "usebox");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[0][playerid], 0.000000, 28.609752);
+		PlayerTextDrawTextSize(playerid, StatsTDs[0][playerid], 119.777786, 0.000000);
+		PlayerTextDrawAlignment(playerid, StatsTDs[0][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[0][playerid], 0);
+		PlayerTextDrawUseBox(playerid, StatsTDs[0][playerid], true);
+		PlayerTextDrawBoxColor(playerid, StatsTDs[0][playerid], 102);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[0][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[0][playerid], 0);
+		PlayerTextDrawFont(playerid, StatsTDs[0][playerid], 0);
+
+		StatsTDs[1][playerid] = CreatePlayerTextDraw(playerid, 130.666656, 105.031105, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[1][playerid], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, StatsTDs[1][playerid], 387.555511, 5.475551);
+		PlayerTextDrawAlignment(playerid, StatsTDs[1][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[1][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[1][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[1][playerid], 0);
+		PlayerTextDrawFont(playerid, StatsTDs[1][playerid], 4);
+
+		StatsTDs[2][playerid] = CreatePlayerTextDraw(playerid, 131.666687, 344.964233, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[2][playerid], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, StatsTDs[2][playerid], 387.555511, 5.475551);
+		PlayerTextDrawAlignment(playerid, StatsTDs[2][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[2][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[2][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[2][playerid], 0);
+		PlayerTextDrawFont(playerid, StatsTDs[2][playerid], 4);
+
+		StatsTDs[3][playerid] = CreatePlayerTextDraw(playerid, 267.555480, 99.057769, "OOC Statistika");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[3][playerid], 0.326888, 1.440711);
+		PlayerTextDrawAlignment(playerid, StatsTDs[3][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[3][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[3][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[3][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[3][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[3][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[3][playerid], 1);
+
+		StatsTDs[4][playerid] = CreatePlayerTextDraw(playerid, 262.888824, 106.533088, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[4][playerid], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, StatsTDs[4][playerid], 2.666653, 241.920303);
+		PlayerTextDrawAlignment(playerid, StatsTDs[4][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[4][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[4][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[4][playerid], 0);
+		PlayerTextDrawFont(playerid, StatsTDs[4][playerid], 4);
+
+		StatsTDs[5][playerid] = CreatePlayerTextDraw(playerid, 380.777679, 108.528648, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[5][playerid], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid, StatsTDs[5][playerid], 2.666653, 241.920303);
+		PlayerTextDrawAlignment(playerid, StatsTDs[5][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[5][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[5][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[5][playerid], 0);
+		PlayerTextDrawFont(playerid, StatsTDs[5][playerid], 4);
+
+		StatsTDs[6][playerid] = CreatePlayerTextDraw(playerid, 133.777832, 125.937751, "Level: ~w~10");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[6][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[6][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[6][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[6][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[6][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[6][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[6][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[6][playerid], 1);
+
+		StatsTDs[7][playerid] = CreatePlayerTextDraw(playerid, 133.888946, 142.866622, "Respekti: ~w~23/40");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[7][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[7][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[7][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[7][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[7][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[7][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[7][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[7][playerid], 1);
+
+		StatsTDs[8][playerid] = CreatePlayerTextDraw(playerid, 134.000061, 158.800064, "Online sati: ~w~200");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[8][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[8][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[8][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[8][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[8][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[8][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[8][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[8][playerid], 1);
+
+		StatsTDs[9][playerid] = CreatePlayerTextDraw(playerid, 133.666732, 175.231246, "Upozorenja: ~w~10");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[9][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[9][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[9][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[9][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[9][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[9][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[9][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[9][playerid], 1);
+
+		StatsTDs[10][playerid] = CreatePlayerTextDraw(playerid, 133.777847, 193.653366, "Admin lvl: ~w~7");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[10][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[10][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[10][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[10][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[10][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[10][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[10][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[10][playerid], 1);
+
+		StatsTDs[11][playerid] = CreatePlayerTextDraw(playerid, 133.888961, 212.075637, "GM LVL: ~w~3");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[11][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[11][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[11][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[11][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[11][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[11][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[11][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[11][playerid], 1);
+
+		StatsTDs[12][playerid] = CreatePlayerTextDraw(playerid, 134.444534, 230.995529, "VIP lvl: ~w~3");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[12][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[12][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[12][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[12][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[12][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[12][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[12][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[12][playerid], 1);
+
+		StatsTDs[13][playerid] = CreatePlayerTextDraw(playerid, 135.000091, 248.920013, "Promoter: ~w~3");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[13][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[13][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[13][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[13][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[13][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[13][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[13][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[13][playerid], 1);
+
+		StatsTDs[14][playerid] = CreatePlayerTextDraw(playerid, 135.111206, 267.342224, "RP Poeni: ~w~10");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[14][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[14][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[14][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[14][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[14][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[14][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[14][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[14][playerid], 1);
+
+		StatsTDs[15][playerid] = CreatePlayerTextDraw(playerid, 134.777877, 286.261993, "apoeni: ~w~10");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[15][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[15][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[15][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[15][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[15][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[15][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[15][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[15][playerid], 1);
+
+		StatsTDs[16][playerid] = CreatePlayerTextDraw(playerid, 273.889160, 123.951057, "Do plate: ~w~60min");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[16][playerid], 0.293555, 1.341156);
+		PlayerTextDrawAlignment(playerid, StatsTDs[16][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[16][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[16][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[16][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[16][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[16][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[16][playerid], 1);
+
+		StatsTDs[17][playerid] = CreatePlayerTextDraw(playerid, 274.889190, 140.879974, "Novac: ~w~$99999999");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[17][playerid], 0.271777, 1.450668);
+		PlayerTextDrawAlignment(playerid, StatsTDs[17][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[17][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[17][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[17][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[17][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[17][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[17][playerid], 1);
+
+		StatsTDs[18][playerid] = CreatePlayerTextDraw(playerid, 275.000274, 161.293304, "Banka: ~w~$99999999");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[18][playerid], 0.271777, 1.450668);
+		PlayerTextDrawAlignment(playerid, StatsTDs[18][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[18][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[18][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[18][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[18][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[18][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[18][playerid], 1);
+
+		StatsTDs[19][playerid] = CreatePlayerTextDraw(playerid, 276.444671, 218.044586, "Tel br: ~w~0611171");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[19][playerid], 0.271777, 1.450668);
+		PlayerTextDrawAlignment(playerid, StatsTDs[19][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[19][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[19][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[19][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[19][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[19][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[19][playerid], 1);
+
+		StatsTDs[20][playerid] = CreatePlayerTextDraw(playerid, 275.333862, 180.204437, "Zlato: ~w~100000");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[20][playerid], 0.293555, 1.341156);
+		PlayerTextDrawAlignment(playerid, StatsTDs[20][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[20][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[20][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[20][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[20][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[20][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[20][playerid], 1);
+
+		StatsTDs[21][playerid] = CreatePlayerTextDraw(playerid, 275.444824, 199.622116, "Mats: ~w~100000");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[21][playerid], 0.293555, 1.341156);
+		PlayerTextDrawAlignment(playerid, StatsTDs[21][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[21][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[21][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[21][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[21][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[21][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[21][playerid], 1);
+
+		StatsTDs[22][playerid] = CreatePlayerTextDraw(playerid, 277.333740, 240.444381, "Brak: ~w~NE");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[22][playerid], 0.293555, 1.341156);
+		PlayerTextDrawAlignment(playerid, StatsTDs[22][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[22][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[22][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[22][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[22][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[22][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[22][playerid], 1);
+
+		StatsTDs[23][playerid] = CreatePlayerTextDraw(playerid, 277.444854, 260.857727, "Hapsenja: ~w~10");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[23][playerid], 0.293555, 1.341156);
+		PlayerTextDrawAlignment(playerid, StatsTDs[23][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[23][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[23][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[23][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[23][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[23][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[23][playerid], 1);
+
+		StatsTDs[24][playerid] = CreatePlayerTextDraw(playerid, 276.667053, 280.275421, "Organizacija: ~w~NE");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[24][playerid], 0.270000, 1.475556);
+		PlayerTextDrawAlignment(playerid, StatsTDs[24][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[24][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[24][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[24][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[24][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[24][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[24][playerid], 1);
+
+		StatsTDs[25][playerid] = CreatePlayerTextDraw(playerid, 277.555999, 300.186584, "Rank: ~w~Lider");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[25][playerid], 0.293555, 1.341156);
+		PlayerTextDrawAlignment(playerid, StatsTDs[25][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[25][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[25][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[25][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[25][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[25][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[25][playerid], 1);
+
+		StatsTDs[26][playerid] = CreatePlayerTextDraw(playerid, 278.111511, 318.110870, "Org kazna: ~w~10h");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[26][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[26][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[26][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[26][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[26][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[26][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[26][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[26][playerid], 1);
+
+		StatsTDs[27][playerid] = CreatePlayerTextDraw(playerid, 391.556243, 123.484237, "Vozilo 1: ~w~Nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[27][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[27][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[27][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[27][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[27][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[27][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[27][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[27][playerid], 1);
+
+		StatsTDs[28][playerid] = CreatePlayerTextDraw(playerid, 392.111816, 140.413085, "Vozilo 2: ~w~nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[28][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[28][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[28][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[28][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[28][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[28][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[28][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[28][playerid], 1);
+
+		StatsTDs[29][playerid] = CreatePlayerTextDraw(playerid, 392.222900, 158.337463, "Vozilo 3: ~w~nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[29][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[29][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[29][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[29][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[29][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[29][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[29][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[29][playerid], 1);
+
+		StatsTDs[30][playerid] = CreatePlayerTextDraw(playerid, 392.333953, 176.759658, "Vozilo 4: ~w~nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[30][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[30][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[30][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[30][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[30][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[30][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[30][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[30][playerid], 1);
+
+		StatsTDs[31][playerid] = CreatePlayerTextDraw(playerid, 393.778442, 196.675231, "Imovina 1: ~w~kuca [12]");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[31][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[31][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[31][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[31][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[31][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[31][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[31][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[31][playerid], 1);
+
+		StatsTDs[32][playerid] = CreatePlayerTextDraw(playerid, 393.889526, 216.092971, "Imovina 2: ~w~kuca [13]");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[32][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[32][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[32][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[32][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[32][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[32][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[32][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[32][playerid], 1);
+
+		StatsTDs[33][playerid] = CreatePlayerTextDraw(playerid, 394.445098, 236.008590, "Imovina 3: ~w~kuca [14]");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[33][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[33][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[33][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[33][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[33][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[33][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[33][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[33][playerid], 1);
+
+		StatsTDs[34][playerid] = CreatePlayerTextDraw(playerid, 395.000701, 256.421936, "Firma: ~w~nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[34][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[34][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[34][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[34][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[34][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[34][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[34][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[34][playerid], 1);
+
+		StatsTDs[35][playerid] = CreatePlayerTextDraw(playerid, 395.556243, 275.839660, "Garaza: ~w~nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[35][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[35][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[35][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[35][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[35][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[35][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[35][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[35][playerid], 1);
+
+		StatsTDs[36][playerid] = CreatePlayerTextDraw(playerid, 395.667358, 296.750732, "Imanje: ~w~nema");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[36][playerid], 0.270444, 1.400890);
+		PlayerTextDrawAlignment(playerid, StatsTDs[36][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[36][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[36][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[36][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[36][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[36][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[36][playerid], 1);
+
+		StatsTDs[37][playerid] = CreatePlayerTextDraw(playerid, 135.333435, 305.181945, "Posao: ~w~Bus vozac");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[37][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[37][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[37][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[37][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[37][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[37][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[37][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[37][playerid], 1);
+
+		StatsTDs[38][playerid] = CreatePlayerTextDraw(playerid, 135.000106, 323.106414, "Ugovor: ~w~2/3");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[38][playerid], 0.326444, 1.176888);
+		PlayerTextDrawAlignment(playerid, StatsTDs[38][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[38][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[38][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[38][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[38][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[38][playerid], 3);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[38][playerid], 1);
+
+		StatsTDs[39][playerid] = CreatePlayerTextDraw(playerid, 508.444549, 102.044448, "X");
+		PlayerTextDrawLetterSize(playerid, StatsTDs[39][playerid], 0.393555, 1.147022);
+		PlayerTextDrawAlignment(playerid, StatsTDs[39][playerid], 1);
+		PlayerTextDrawColor(playerid, StatsTDs[39][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, StatsTDs[39][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, StatsTDs[39][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, StatsTDs[39][playerid], 51);
+		PlayerTextDrawFont(playerid, StatsTDs[39][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, StatsTDs[39][playerid], 1);
+		PlayerTextDrawSetSelectable(playerid, StatsTDs[39][playerid], true);
+		SetTimerEx( "ShowStatistikaTD", 150, false, "d", playerid );
+		
+
+//frenkie
+		new nxtlevel = PlayerInfo[ playerid ][ xLevel ]+1,
+		expamount = nxtlevel*levelexp,
+			exp = PlayerInfo[ playerid ][ xRespekt ];
+
+
+		format( globalstring, sizeof( globalstring ), "Level: ~w~%d",PlayerInfo[ playerid ][ xLevel ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[6][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Respekti: ~w~%d/%d",exp,expamount);
+		PlayerTextDrawSetString( playerid, StatsTDs[7][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Online sati: ~w~%d",PlayerInfo[ playerid ][ xOnlineSati ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[8][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Upozorenja: ~w~%d",PlayerInfo[ playerid ][ xWarn ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[9][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Admin lvl: ~w~%d",PlayerInfo[ playerid ][ xAdmin ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[10][playerid], globalstring);
+	
+		format( globalstring, sizeof( globalstring ), "Gm lvl: ~w~%d",PlayerInfo[ playerid ][ xHelper ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[11][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "VIP lvl: ~w~%d",PlayerInfo[ playerid ][ xVIPLevel ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[12][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Promoter: ~w~%d",PlayerInfo[ playerid ][ xPromoter ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[13][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Rp poeni: ~w~%d",PlayerInfo[ playerid ][ xRPPoen ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[14][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "apoeni: ~w~%d",PlayerInfo[ playerid ][ xApoeni ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[15][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Do plate: ~w~%dmin",(60-PlayerInfo[ playerid ][ xPayDay ]));
+		PlayerTextDrawSetString( playerid, StatsTDs[16][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Novac: ~w~$%d",PlayerInfo[ playerid ][ xNovac ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[17][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Banka: ~w~$%d",PlayerInfo[ playerid ][ xBRacun ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[18][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Tel br: ~w~%d",PlayerInfo[ playerid ][ xBrojTelefona ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[19][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Zlato: ~w~%d",PlayerInfo[ playerid ][ xZlato ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[20][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Mats: ~w~%d",PlayerInfo[ playerid ][ xMaterijali ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[21][playerid], globalstring);
+
+		if(PlayerInfo[ playerid ][ xMarried ] == false)
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[22][playerid], "Brak: ~w~NE");
+		}
+		else if(PlayerInfo[ playerid ][ xMarried ] == true)
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[22][playerid], "Brak: ~w~DA");
+		}
+
+		format( globalstring, sizeof( globalstring ), "Hapsenja: ~w~%d",PlayerInfo[ playerid ][ xUhapsen ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[23][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Organizacija: ~w~%s", OI[ PlayerInfo[ playerid ][ xClan ] ][ oPreFix ] );
+		PlayerTextDrawSetString( playerid, StatsTDs[24][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Rank: ~w~%d",PlayerInfo[ playerid ][ xRank ] );
+		PlayerTextDrawSetString( playerid, StatsTDs[25][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Org kazna: ~w~%dh",PlayerInfo[ playerid ][ xKazneniUgovor ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[26][playerid], globalstring);
+		//////////////////////////////////////////////////////////////////////////////////////////
+		if( PlayerInfo[ playerid ][ xVoziloID ][ 0 ] != -1 )
+		{
+			format( globalstring, sizeof( globalstring ), "Vozilo 1: ~w~%s [%d]",getVehicleName( PlayerInfo[ playerid ][ xVoziloID ][ 0 ] ),PlayerInfo[ playerid ][ xVoziloID ][ 0 ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[27][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[27][playerid], "Vozilo 1: ~w~Nema");
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		if( PlayerInfo[ playerid ][ xVoziloID ][ 1 ] != -1 )
+		{
+			format( globalstring, sizeof( globalstring ), "Vozilo 2: ~w~%s [%d]",getVehicleName( PlayerInfo[ playerid ][ xVoziloID ][ 1 ] ),PlayerInfo[ playerid ][ xVoziloID ][ 1 ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[28][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[28][playerid], "Vozilo 2: ~w~Nema");
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		if( PlayerInfo[ playerid ][ xVoziloID ][ 2 ] != -1 )
+		{
+			format( globalstring, sizeof( globalstring ), "Vozilo 3: ~w~%s [%d]",getVehicleName( PlayerInfo[ playerid ][ xVoziloID ][ 2 ] ),PlayerInfo[ playerid ][ xVoziloID ][ 2 ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[29][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[29][playerid], "Vozilo 3: ~w~Nema");
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		if( PlayerInfo[ playerid ][ xVoziloID ][ 3 ] != -1 )
+		{
+			format( globalstring, sizeof( globalstring ), "Vozilo 4: ~w~%s [%d]",getVehicleName( PlayerInfo[ playerid ][ xVoziloID ][ 3 ] ),PlayerInfo[ playerid ][ xVoziloID ][ 3 ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[30][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[30][playerid], "Vozilo 4: ~w~Nema");
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		if( PlayerInfo[ playerid ][ xProperty ][ 0 ] != -1 )
+		{
+
+			if( II[ PlayerInfo[ playerid ][ xProperty ][ 0 ] ][ iUsage ] == IMOVINA_KUCA )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 1: ~w~Kuca [%d]",PlayerInfo[ playerid ][ xProperty ][ 0 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[31][playerid], globalstring);
+			}
+			else if( II[ PlayerInfo[ playerid ][ xProperty ][ 0 ] ][ iUsage ] == IMOVINA_STAN )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 1: ~w~Stan [%d]",PlayerInfo[ playerid ][ xProperty ][ 0 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[31][playerid], globalstring);
+			}
+			else if( II[ PlayerInfo[ playerid ][ xProperty ][ 0 ] ][ iUsage ] == IMOVINA_VIKENDICA )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 1: ~w~Vikendica [%d]",PlayerInfo[ playerid ][ xProperty ][ 0 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[31][playerid], globalstring);
+			}
+
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[31][playerid], "Imovina 1: ~w~Nema");
+		}
+		///////////////////////////////////////////////////////////////////////////////////
+		
+		if( PlayerInfo[ playerid ][ xProperty ][ 1 ] != -1 )
+		{
+
+			if( II[ PlayerInfo[ playerid ][ xProperty ][ 1 ] ][ iUsage ] == IMOVINA_KUCA )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 2: ~w~Kuca [%d]",PlayerInfo[ playerid ][ xProperty ][ 1 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[32][playerid], globalstring);
+			}
+			else if( II[ PlayerInfo[ playerid ][ xProperty ][ 1 ] ][ iUsage ] == IMOVINA_STAN )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 2: ~w~Stan [%d]",PlayerInfo[ playerid ][ xProperty ][ 1 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[32][playerid], globalstring);
+			}
+			else if( II[ PlayerInfo[ playerid ][ xProperty ][ 1 ] ][ iUsage ] == IMOVINA_VIKENDICA )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 2: ~w~Vikendica [%d]",PlayerInfo[ playerid ][ xProperty ][ 1 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[32][playerid], globalstring);
+			}
+
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[32][playerid], "Imovina 2: ~w~Nema");
+		}
+		///////////////////////////////////////////////////////////////////////////////////
+
+		if( PlayerInfo[ playerid ][ xProperty ][ 2 ] != -1 )
+		{
+
+			if( II[ PlayerInfo[ playerid ][ xProperty ][ 2 ] ][ iUsage ] == IMOVINA_KUCA )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 3: ~w~Kuca [%d]",PlayerInfo[ playerid ][ xProperty ][ 2 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[33][playerid], globalstring);
+			}
+			else if( II[ PlayerInfo[ playerid ][ xProperty ][ 2 ] ][ iUsage ] == IMOVINA_STAN )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 3: ~w~Stan [%d]",PlayerInfo[ playerid ][ xProperty ][ 2 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[33][playerid], globalstring);
+			}
+			else if( II[ PlayerInfo[ playerid ][ xProperty ][ 2 ] ][ iUsage ] == IMOVINA_VIKENDICA )
+			{
+				format( globalstring, sizeof( globalstring ), "Imovina 3: ~w~Vikendica [%d]",PlayerInfo[ playerid ][ xProperty ][ 2 ]);
+				PlayerTextDrawSetString( playerid, StatsTDs[33][playerid], globalstring);
+			}
+
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[33][playerid], "Imovina 3: ~w~Nema");
+		}
+		
+		////////////////////////////////////////////////////////////////////////////////////////
+		
+		if( PlayerInfo[ playerid ][ xFirmaID ] != -1 )
+		{
+
+			format( globalstring, sizeof( globalstring ), "Firma: ~w~Adresa [%d]",PlayerInfo[ playerid ][ xFirmaID ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[34][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[34][playerid], "Firma: ~w~Nema");
+		}
+		
+		////////////////////////////////////////////////////////////////////////////////////////
+		
+		if( PlayerInfo[ playerid ][ xGarageID ] != -1 )
+		{
+
+			format( globalstring, sizeof( globalstring ), "Garaza: ~w~Adresa [%d]",PlayerInfo[ playerid ][ xGarageID ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[35][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[35][playerid], "Garaza: ~w~Nema");
+		}
+		////////////////////////////////////////////////////////////////////////////////////////
+		if( PlayerInfo[ playerid ][ xFieldID ] != -1 )
+		{
+
+			format( globalstring, sizeof( globalstring ), "Imanje: ~w~Adresa [%d]",PlayerInfo[ playerid ][ xFieldID ]);
+			PlayerTextDrawSetString( playerid, StatsTDs[36][playerid], globalstring);
+		}
+		else
+		{
+			PlayerTextDrawSetString( playerid, StatsTDs[36][playerid], "Imanje: ~w~Nema");
+		}
+		
+		format( globalstring, sizeof( globalstring ), "Posao: ~w~%s",getJobName( PlayerInfo[ playerid ][ xPosao ] ));
+		PlayerTextDrawSetString( playerid, StatsTDs[37][playerid], globalstring);
+		
+		format( globalstring, sizeof( globalstring ), "Ugovor: ~w~%d/3",PlayerInfo[ playerid ][ xUgovor ]);
+		PlayerTextDrawSetString( playerid, StatsTDs[38][playerid], globalstring);
+
+
+
+	}
+	else if( show == false )
+	{
+		for( new i = 0; i < 40; i ++)
+		{
+			PlayerTextDrawHide( playerid, StatsTDs[i][playerid] );
+			PlayerTextDrawDestroy( playerid, StatsTDs[i][playerid] );
+			StatsTDs[i][playerid] = PlayerText:INVALID_TEXT_DRAW;
+			CancelSelectTextDraw( playerid );
+		}
+
+	}
+}
+*/
+
+//------------------------------------------------------------------------------
+/*stock LicnaKartaControl( playerid, bool:show )
+{
+	if( show == true )
+	{
+		LicnaKartaTD[0][playerid] = CreatePlayerTextDraw(playerid, 455.777008, 97.073333, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[0][playerid], 0.000000, 23.808767);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[0][playerid], 158.888885, 0.000000);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[0][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[0][playerid], 170);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[0][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[0][playerid], 170);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[0][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[0][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[0][playerid], 0);
+
+		LicnaKartaTD[1][playerid] = CreatePlayerTextDraw(playerid, 452.000396, 95.075553, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[1][playerid], 0.095555, -0.587377);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[1][playerid], 2.666676, 218.524429);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[1][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[1][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[1][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[1][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[1][playerid], 4);
+
+		LicnaKartaTD[2][playerid] = CreatePlayerTextDraw(playerid, 158.778320, 95.079994, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[2][playerid], 0.095555, -0.587377);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[2][playerid], 2.666676, 218.524429);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[2][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[2][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[2][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[2][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[2][playerid], 4);
+
+		LicnaKartaTD[3][playerid] = CreatePlayerTextDraw(playerid, 263.222656, 94.582206, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[3][playerid], 0.095555, -0.587377);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[3][playerid], 2.666676, 218.524429);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[3][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[3][playerid], tdboja);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[3][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[3][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[3][playerid], 4);
+
+		LicnaKartaTD[4][playerid] = CreatePlayerTextDraw(playerid, 247.777770, 113.002212, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[4][playerid], 0.000000, 12.625555);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[4][playerid], 175.333312, 0.000000);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[4][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[4][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[4][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[4][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[4][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[4][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[4][playerid], 0);
+
+		LicnaKartaTD[5][playerid] = CreatePlayerTextDraw(playerid, 250.888885, 246.904479, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[5][playerid], 0.000000, 1.397899);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[5][playerid], 174.444442, 0.000000);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[5][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[5][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[5][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[5][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[5][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[5][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[5][playerid], 0);
+
+		LicnaKartaTD[6][playerid] = CreatePlayerTextDraw(playerid, 251.000000, 284.739990, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[6][playerid], 0.000000, 1.397899);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[6][playerid], 173.555557, 0.000000);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[6][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[6][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[6][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[6][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[6][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[6][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[6][playerid], 0);
+
+		LicnaKartaTD[7][playerid] = CreatePlayerTextDraw(playerid, 212.888839, 247.893341, "Skopsi");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[7][playerid], 0.147777, 0.918044);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[7][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[7][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[7][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[7][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[7][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[7][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[7][playerid], 1);
+
+		LicnaKartaTD[8][playerid] = CreatePlayerTextDraw(playerid, 212.555511, 285.728820, "JBMG: 051099812121");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[8][playerid], 0.145555, 1.017600);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[8][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[8][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[8][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[8][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[8][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[8][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[8][playerid], 1);
+
+		LicnaKartaTD[9][playerid] = CreatePlayerTextDraw(playerid, 358.222167, 105.544364, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[9][playerid], 0.148888, 1.149010);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[9][playerid], -107.333427, -162.773239);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[9][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[9][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[9][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[9][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[9][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[9][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[9][playerid], 0);
+
+		LicnaKartaTD[10][playerid] = CreatePlayerTextDraw(playerid, 360.444366, 105.528923, "LICNA KARTA");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[10][playerid], 0.337555, 1.037511);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[10][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[10][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[10][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[10][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[10][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[10][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[10][playerid], 1);
+
+		LicnaKartaTD[11][playerid] = CreatePlayerTextDraw(playerid, 344.111022, 148.357742, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[11][playerid], 0.148888, 1.149010);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[11][playerid], -108.222297, -133.404327);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[11][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[11][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[11][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[11][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[11][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[11][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[11][playerid], 0);
+
+		LicnaKartaTD[12][playerid] = CreatePlayerTextDraw(playerid, 343.333221, 190.175567, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[12][playerid], 0.148888, 1.149010);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[12][playerid], -108.222297, -133.404327);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[12][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[12][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[12][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[12][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[12][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[12][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[12][playerid], 0);
+
+		LicnaKartaTD[13][playerid] = CreatePlayerTextDraw(playerid, 342.555480, 231.993286, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[13][playerid], 0.148888, 1.149010);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[13][playerid], -108.222297, -133.404327);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[13][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[13][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[13][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[13][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[13][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[13][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[13][playerid], 0);
+
+		LicnaKartaTD[14][playerid] = CreatePlayerTextDraw(playerid, 343.555572, 271.819946, "usebox");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[14][playerid], 0.148888, 1.149010);
+		PlayerTextDrawTextSize(playerid, LicnaKartaTD[14][playerid], -108.222297, -133.404327);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[14][playerid], 2);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[14][playerid], 0);
+		PlayerTextDrawUseBox(playerid, LicnaKartaTD[14][playerid], true);
+		PlayerTextDrawBoxColor(playerid, LicnaKartaTD[14][playerid], 6261930);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[14][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[14][playerid], 0);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[14][playerid], 0);
+
+		LicnaKartaTD[15][playerid] = CreatePlayerTextDraw(playerid, 288.000030, 148.337768, "Pol: Musko");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[15][playerid], 0.245111, 1.007643);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[15][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[15][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[15][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[15][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[15][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[15][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[15][playerid], 1);
+
+		LicnaKartaTD[16][playerid] = CreatePlayerTextDraw(playerid, 286.333374, 190.155593, "Godine: 17");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[16][playerid], 0.250000, 1.002665);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[16][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[16][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[16][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[16][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[16][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[16][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[16][playerid], 1);
+
+		LicnaKartaTD[17][playerid] = CreatePlayerTextDraw(playerid, 286.444519, 231.973358, "GRAD: Beograd");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[17][playerid], 0.230000, 1.032531);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[17][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[17][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[17][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[17][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[17][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[17][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[17][playerid], 1);
+
+		LicnaKartaTD[18][playerid] = CreatePlayerTextDraw(playerid, 287.444519, 271.302276, "Broj Licne: 2121212");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[18][playerid], 0.202888, 1.216711);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[18][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[18][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[18][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[18][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[18][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[18][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[18][playerid], 1);
+
+		LicnaKartaTD[19][playerid] = CreatePlayerTextDraw(playerid, 436.000091, 301.155517, "X");
+		PlayerTextDrawLetterSize(playerid, LicnaKartaTD[19][playerid], 0.405111, 1.052443);
+		PlayerTextDrawAlignment(playerid, LicnaKartaTD[19][playerid], 1);
+		PlayerTextDrawColor(playerid, LicnaKartaTD[19][playerid], -1);
+		PlayerTextDrawSetShadow(playerid, LicnaKartaTD[19][playerid], 0);
+		PlayerTextDrawSetOutline(playerid, LicnaKartaTD[19][playerid], 1);
+		PlayerTextDrawBackgroundColor(playerid, LicnaKartaTD[19][playerid], 51);
+		PlayerTextDrawFont(playerid, LicnaKartaTD[19][playerid], 2);
+		PlayerTextDrawSetProportional(playerid, LicnaKartaTD[19][playerid], 1);
+		PlayerTextDrawSetSelectable(playerid, LicnaKartaTD[19][playerid], true);
+
+		LicnaKartaTD[20][playerid] = CreatePlayerTextDraw(playerid,99.555564, 47.288898, "LD_SPAC:white");
+		PlayerTextDrawLetterSize(playerid,LicnaKartaTD[20][playerid], 0.000000, 0.000000);
+		PlayerTextDrawTextSize(playerid,LicnaKartaTD[20][playerid], 217.777816, 235.946655);
+		PlayerTextDrawAlignment(playerid,LicnaKartaTD[20][playerid], 1);
+		PlayerTextDrawColor(playerid,LicnaKartaTD[20][playerid], -1);
+		PlayerTextDrawUseBox(playerid,LicnaKartaTD[20][playerid], true);
+		PlayerTextDrawBoxColor(playerid,LicnaKartaTD[20][playerid], 0);
+		PlayerTextDrawSetShadow(playerid,LicnaKartaTD[20][playerid], 0);
+		PlayerTextDrawSetOutline(playerid,LicnaKartaTD[20][playerid], 0);
+		PlayerTextDrawFont(playerid,LicnaKartaTD[20][playerid], 5);
+		PlayerTextDrawSetPreviewModel(playerid,LicnaKartaTD[20][playerid], GetPlayerSkin(playerid));
+		PlayerTextDrawSetPreviewRot(playerid,LicnaKartaTD[20][playerid], 0.000000, 0.000000, 0.000000, 2.000000);
+		PlayerTextDrawBackgroundColor(playerid,LicnaKartaTD[20][playerid], 0);
+		//stringovi
+		PlayerTextDrawSetString( playerid, LicnaKartaTD[7][playerid], ImeIgraca( playerid ) );
+		
+		if( PlayerInfo[ playerid ][ xPol ] == 1 )
+		{
+			PlayerTextDrawSetString( playerid, LicnaKartaTD[15][playerid], "pol: ~w~Musko");
+		}
+		else if( PlayerInfo[ playerid ][ xPol ] == 2 )
+		{
+			PlayerTextDrawSetString( playerid, LicnaKartaTD[15][playerid], "pol: ~w~Zensko");
+		}//corelli
+		format( globalstring, sizeof( globalstring ), "Godine: ~w~%d",PlayerInfo[ playerid ][ xGodine ]);
+		PlayerTextDrawSetString( playerid, LicnaKartaTD[16][playerid], globalstring);
+		format( globalstring, sizeof( globalstring ), "Broj Licne: ~w~%d",PlayerInfo[ playerid ][ xBrojLk ]);
+		PlayerTextDrawSetString( playerid, LicnaKartaTD[18][playerid], globalstring);
+		format( globalstring, sizeof( globalstring ), "JMBG: ~w~%d",PlayerInfo[ playerid ][ xJMBG ]);
+		PlayerTextDrawSetString( playerid, LicnaKartaTD[8][playerid], globalstring);
+		
+		SetTimerEx( "ShowLicnaKartaTDs", 150, false, "d", playerid );
+
+
+		
+		
+	}
+	else if( show == false )
+	{
+		for( new i = 0; i < 21; i ++)
+		{
+			PlayerTextDrawHide( playerid, LicnaKartaTD[ i ][ playerid ] );
+			PlayerTextDrawDestroy( playerid, LicnaKartaTD[ i ][ playerid ] );
+			LicnaKartaTD[ i ][ playerid ] = PlayerText:INVALID_TEXT_DRAW;
+			CancelSelectTextDraw( playerid );
+		}
+	
+	}
+}*/
+
+//------------------------------------------------------------------------------
+/*
+const LINE_BREAKING_LENGTH = 90;
+
+stock SendSplitMessage(playerid, color, const msgstring[])
+{
+	new 
+		len = strlen(msgstring);
+	if(len >= LINE_BREAKING_LENGTH)
+	{
+		new 
+			colorstring[9] = EOS, 
+			colorstart = 0, 
+			colorend = 0,	
+			spacepos = 0, 
+			bool:broken = false;
+
+		for(new j = (LINE_BREAKING_LENGTH - 20); j < len; j++)
+		{
+			if(msgstring[j] == '{')
+				colorstart = j;
+				
+			if(msgstring[j] == '}')
+				colorend = j + 1;
+
+			if(msgstring[j] == ' ')
+				spacepos = j;
+
+			if(j >= LINE_BREAKING_LENGTH && spacepos >= (LINE_BREAKING_LENGTH - 20) && (colorstart == 0 || (colorstart != 0 && colorend > colorstart)))
+			{
+				broken = true;
+
+				if(colorstart != 0 && colorend != 0)
+					strmid(colorstring, msgstring, colorstart, colorend, sizeof(colorstring));
+
+				va_SendClientMessage(playerid, color, "%.*s...", spacepos, msgstring);
+				va_SendClientMessage(playerid, color, "%s...%s", colorstring, msgstring[spacepos+1]);
+				return 1;
+			}
+		}
+		if(!broken)
+			SendClientMessage(playerid, color, msgstring);
+	}
+	else return SendClientMessage(playerid, color, msgstring);
+	return 1;
+}
+*/
+

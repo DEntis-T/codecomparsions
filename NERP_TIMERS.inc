@@ -6,14 +6,17 @@
  *                             *
  * Verzija: 2.4    *
  *                             *
- * Developer: DentisT_and_Brace
- *               *
- * Zadnji update: 22.01.2021      *
- *
- * Mapper: Mata | Vlasnik: Makso          *
- *                   *
- */
+* Developer: DentisT_and_Brace
+*               *
+* Zadnji update: 22.01.2021      *
+*
+* Mapper: Mata | Vlasnik: Makso          *
+*                   *
+*/
 
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
 
 #define task%0[%1](%2) %0(%2);public %0(%2)
 #define NERP_TIMER(%1,%2,%3$%4); if(timerid==%4){printf("\tUcitavanje timera: "%1"\t\nTick rate: %i",GetServerTickRate());CallLocalFunction(%1,"");SetTimer(%1,%2,%3);return 1;}
@@ -819,4 +822,739 @@ task updateMoneyBar[2000]()
 		}
 	}
 	return 1;
+}
+
+
+RDYBLINK();
+public RDYBLINK()
+{
+	rdy = !rdy;
+	if(rdy)
+	{
+		TextDrawSetString(ReadyText,"~w~Postavi ~y~ulog~w~!~n~~y~ ~k~~PED_SPRINT~ ~w~- ~g~kockaj~n~~y~/gamble ~w~- ~r~izadji~n~~y~~k~~PED_JUMPING~ ~w~- ~y~podigni ulog");
+	}
+	else
+	{
+		TextDrawSetString(ReadyText,"_~n~~y~ ~k~~PED_SPRINT~ ~w~- ~g~kockaj~n~~y~/gamble ~w~- ~r~izadji~n~~k~~PED_JUMPING~ ~w~- ~y~podigni ulog");
+	}
+	return 1;
+}
+
+BrziTajmer();
+public BrziTajmer()
+{
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		if(IsPlayerConnected(i))
+		{
+			if(BRACETMLogoShowed[i])
+			{
+				SetPlayerTime(i, 0, 0);
+			}
+			new vehicleid = GetPlayerVehicleID( i ),
+				plantid,
+				Float:behindHarvester[ 3 ];
+				
+			if( vehicleid != INVALID_VEHICLE_ID ) {
+			
+				if( PlayerInfo[ i ][ xPosao ] == POSAO_FARMER ) {
+				
+					if( isAHarvester( vehicleid ) ) {
+
+						plantid = getPlayerNearFarmerPlant( i );
+
+						if( plantid != (-1) && !plantInfo[ plantid ][ farmWheatCreated ] && ( 0 <= farmerInfo[ i ][ fiFarmerPlantsPlanted ] <= MAX_FARMERS_PLANTS_PLANTED ) ) {
+							GetDynamicObjectPos( plantInfo[ plantid ][ farmObject ], behindHarvester[ 0 ], behindHarvester[ 1 ], behindHarvester[ 2 ] );
+							DestroyDynamicObject( plantInfo[ plantid ][ farmObject ] );
+							plantInfo[ plantid ][ farmObject ] = CreateDynamicObject( 806, behindHarvester[ 0 ], behindHarvester[ 1 ], behindHarvester[ 2 ], 0.0, 0.0, 0.0 );
+							plantInfo[ plantid ][ farmWheatCreated ] = true;
+							farmerInfo[ i ][ fiFarmerWheatCreated ]++;
+							if( farmerInfo[ i ][ fiFarmerWheatCreated ] == MAX_FARMERS_PLANTS_PLANTED ) {
+								SendJobMessage( i, "Poznjao si sve useve, sada ih oberi i odnesi na prikazani marker." );
+								SetVehicleToRespawn( vehicleid );
+								Dimi_SetPlayerCheckpoint( i, -1100.0110, -1142.8070, 129.2188, 3.0 );
+								CheckpointStatus[ i ] = 28;
+							}
+						}
+					}
+				}
+			}
+			
+			if( GetNearestRadar( i ) != -1 ) {
+			
+				if( IsPlayerInAnyVehicle( i ) && GetPlayerState( i ) == PLAYER_STATE_DRIVER ) {
+				
+					if( !IsVehicleBajs( vehicleid  ) && !alreadyPictured[ i ] && GetSpeed( i ) > radarInfo[ GetNearestRadar( i ) ][ radarMaxSpeed ] ) {
+					
+						if( !PoliceDuty[ i ] && !AdminDuty[ i ] ) {
+						
+							PlayerInfo[ i ][ xRadarBodovi ]++;
+							
+							alreadyPictured[ i ] = true;
+							SetTimerEx( "RemoveRadarPictured", 10000, false, "i", i );
+							announcement( i, "~w~RADAR VAS JE USLIKAO", 2000, 5 );
+							SendClientMessagee( i, -1, ""col_red"___________________________"col_white"RADAR"col_red"___________________________" );
+							SendClientMessageEx( i, -1, "Prekoracili ste maksimalnu brzinu od "col_red"%d.", radarInfo[ GetNearestRadar( i ) ][ radarMaxSpeed ] );
+							SendClientMessageEx( i, -1, "Radar vas je uslikao, kazna je "col_red"%d$.", radarInfo[ GetNearestRadar( i ) ][ radarPrice ] );
+
+							if( PlayerInfo[ i ][ xRadarBodovi ] == 3 ||
+								PlayerInfo[ i ][ xRadarBodovi ] == 6 ||
+								PlayerInfo[ i ][ xRadarBodovi ] == 9 ||
+								PlayerInfo[ i ][ xRadarBodovi ] == 12 ||
+								PlayerInfo[ i ][ xRadarBodovi ] == 15 ) {
+
+								SendClientMessageEx( i, -1, "Oduzeto vam je "col_red"2000$"col_white", zbog "col_red"%d "col_white"neplacenih radar poena.", PlayerInfo[ i ][ xRadarBodovi ] );
+								DajIgracuNovac( i, -2000 );
+							}
+							else if( PlayerInfo[ i ][ xRadarBodovi ] >= 18 ) {
+							
+								if( PlayerInfo[ i ][ xVozacka ] != 0 ) {
+								
+									PlayerInfo[ i ][ xVozacka ] = 0;
+									SendClientMessagee( i, -1, "Oduzeta vam je vozacka dozvola zbog "col_red"18 "col_white"neplacenih radar poena." );
+								}
+							}
+							SendClientMessagee( i, -1, ""col_red"_____________________________________________________________" );
+							RadarColor( i );
+						}
+					}
+				}
+			}
+			
+			new Float:Pos[ 3 ];
+			GetPlayerPos( i, Pos[ 0 ], Pos[ 1 ], Pos[ 2 ] );
+			if( ( Pos[ 2 ] >= 2044.2305 && Pos[2] <= 2047.2335 ) && IsPlayerInDynamicArea( i, bankSafe ) && SruseniLaseri == false && VecjeUsao[ i ] == false && GetFactionType( i ) != ORG_TIP_PD && WatchingTV{ i } == 0 ) {
+				PostaviWanted( i, "Ulaz u sef banke", "Nepoznati", 3 );
+				VecjeUsao[ i ] = true;
+			}
+			else if( !IsPlayerInDynamicArea( i, bankSafe ) && VecjeUsao[ i ] == true ) {
+				VecjeUsao[ i ] = false;
+			} 
+		}
+	}
+	return 1;
+}
+
+
+Misija();
+public Misija()
+{
+	new idigraca;
+	for
+	(
+		idigraca = 0; 
+		idigraca < MAX_PLAYERS; 
+		idigraca++ 
+	)
+	{
+		MozeNaMisiju
+		[
+			idigraca
+		] = 1;
+	}
+	
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		SendInfoMessage(i,"Timer je istekao, mozete na poslovnu misiju!");
+	}
+	return 1;
+}
+
+LoadingTimerTacke();
+public LoadingTimerTacke()
+{
+	if(TackeLoadingTD == 1)
+	{
+		TackeLoadingTD = 2;
+		TextDrawSetString(UcitavanjeTextdraw[5], ".");
+		return 1;
+	}
+	if(TackeLoadingTD == 2)
+	{
+		TackeLoadingTD = 3;
+		TextDrawSetString(UcitavanjeTextdraw[5], "..");
+		return 1;
+	}
+	if(TackeLoadingTD == 3)
+	{
+		TackeLoadingTD = 1;
+		TextDrawSetString(UcitavanjeTextdraw[5], "...");
+		return 1;
+	}
+	return 1;
+}
+
+FixDealers(); public FixDealers()
+{
+	for(new i; i < MAX_DEALERS; i++)
+	{
+		if(DealerInfo[i][dealerPos][0] != 0 && DealerInfo[i][dealerPos][1] != 0)
+		{
+			Dileri3D(i);
+		}
+	}
+	return 1;
+}
+
+GlobalTimer();
+public GlobalTimer()
+{
+	new id = -1;
+	if( cseconds ) {
+
+		format( cstring, 6, "~w~%d", cseconds-1 );
+		GameTextForAll( cstring, 1100, 4 );
+		SoundForAll( 1056 );
+
+		cseconds --;
+
+		if( !cseconds )
+		{
+			GameTextForAll( "~r~~y~MOZES KRENUTI - SAD!", 2000, 4 );
+			SoundForAll( 1057 );
+		}
+	}
+
+
+
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		if(!IsPlayerConnected(i)) continue;
+		
+
+		if( GetPlayerInterior( i ) == 0 && GetPlayerVirtualWorld( i ) == 0 )
+		{
+			if (PlayerLogged[i] == true) 
+			{
+				if(!TogHud[ i ])
+				{
+					new stringzone[ MAX_ZONE_NAME ];
+					new stringgrada[ MAX_ZONE_NAME11 ];
+					format( stringzone, sizeof( stringzone ), "%s", GetPlayerLocation( i ) );
+					PlayerTextDrawSetString( i, LokacijaIgracaTD[ i ], stringzone );
+					PlayerTextDrawShow( i, LokacijaIgracaTD[ i ] );
+					format( stringgrada, sizeof( stringgrada ), "%s", GetPlayerLocation11( i ) );
+					PlayerTextDrawSetString( i, GradIgracaTD[ i ], stringgrada );
+					PlayerTextDrawShow( i, GradIgracaTD[ i ] );
+				}
+				else if(TogHud[ i ])
+				{
+					PlayerTextDrawHide(i,LokacijaIgracaTD[ i ] );
+					PlayerTextDrawHide(i,GradIgracaTD[ i ] );
+				}
+			}
+			
+		}
+		else
+		{
+			if (PlayerLogged[i] == true)
+			{
+				if(!TogHud[ i ])
+				{
+					PlayerTextDrawSetString( i, LokacijaIgracaTD[ i ],"Nema informacija..." );
+					PlayerTextDrawSetString( i, GradIgracaTD[ i ],"Signal - nedostizan!" );
+				}
+				else if(TogHud[ i ])
+				{
+					PlayerTextDrawHide(i,LokacijaIgracaTD[ i ] );
+					PlayerTextDrawHide(i,GradIgracaTD[ i ] );
+				}
+			}
+
+		}
+		
+		if( SearchNadji[ i ] != -1 )
+		{
+		
+			if( IsPlayerConnected( SearchNadji[ i ] ) )
+			{
+		
+				new Float:X, Float:Y, Float:Z;
+				GetPlayerPos( SearchNadji[ i ], X, Y, Z );
+				Dimi_SetPlayerCheckpoint( i, X, Y, Z, 6 );
+			}
+			else if( !IsPlayerConnected( SearchNadji[ i ] ) ) SearchNadji[ i ] = -1;
+
+		}
+ 
+		
+
+		if( PlayerInfo[ i ][ xMute ] != 0 )
+		{
+			PlayerInfo[ i ][ xMute ]--;
+			if( PlayerInfo[ i ][ xMute ] <= 0 )
+			{
+				PlayerInfo[ i ][ xMute ] = 0;
+			}
+		}
+
+		if( VremeZaNovac[ i ] != 0 )
+		{
+			VremeZaNovac[ i ]--;
+			if( VremeZaNovac[ i ] == 0 )
+			{
+				SendClientMessageEx( i, -1, "{005B88}|| Pljacka || {FFFFFF}Ostali ste zivi 2 minuta i dobili "SERVERBOJA_AQUA"$%d {FFFFFF}od pljacke!", PljackaNovac[ i ] );
+				DajIgracuNovac( i, PljackaNovac[ i ] );
+				PljackaNovac[ i ] = 0;
+			}
+		}
+
+		if( VremeZaZlato[ i ] != 0 )
+		{
+			VremeZaZlato[ i ]--;
+			if( VremeZaZlato[ i ] == 0 )
+			{
+				SendClientMessageEx( i, -1, "{005B88}|| Pljacka || {FFFFFF}Ostali ste zivi 2 minuta i dobili "SERVERBOJA_AQUA"%dg {FFFFFF}zlata od pljacke!", PljackaZlato[ i ] );
+				PlayerInfo[ i ][ xZlato ] += PljackaZlato[ i ];
+				SavePlayer( i );
+				PljackaZlato[ i ] = 0;
+				UpdateZlatoTD( i );
+			}
+		}
+
+		if( Polaganje[ i ] >= 1 )
+		{
+			if( IsPlayerInAnyVehicle( i ) )
+			{
+				if( GetSpeed( i ) > 100 )
+				 {
+					GreskaVoznja[ i ]++;
+					SendClientMessagee( i, -1, ""col_orange"[Instruktor]: "col_white"Prekoracili ste brzinu od 100km/h na gradskoj voznji i dobili gresku!");
+					if( GreskaVoznja[ i ] == 3 )
+					 {
+						Polaganje[ i ] = 0;
+						GreskaVoznja[ i ] = 0;
+						Dimi_DisablePlayerCheckpoint( i );
+						Dimi_RemovePlayerFromVehicle( i );
+						SendClientMessagee( i, -1, ""col_orange"[Instruktor]: "col_white"Pali ste na vozackom ispitu jer ste prekoracili brzinu od 100km/h 3 puta!");
+						SetVehicleToRespawn( GetPlayerVehicleID( i ) );
+					}
+				}
+			}
+		}
+		if( IsPlayerInAnyVehicle( i ) && GetPlayerState( i ) == PLAYER_STATE_DRIVER && GetSpeed( i ) > 10 )
+		{
+
+			new autoid = ScriptIDVozila[ GetPlayerVehicleID( i ) ];
+			
+			if( autoid != -1 )
+			{
+			
+				VehicleInfo[ autoid ][ vMetri ] += ( GetSpeed( i )*10 )/36;
+				if( VehicleInfo[ autoid ][ vMetri ] > 999 )
+				{
+					VehicleInfo[ autoid ][ vKilometri ]++;
+					VehicleInfo[ autoid ][ vMetri ] = 0;
+				}
+			}
+		}
+
+		if( ReportGlobal[ i ] > 0 ) ReportGlobal[ i ]--;
+		
+		if( VIPPort[ i ] > 0 ) VIPPort[ i ]--;
+		
+		if( PromoterPort[ i ] > 0 ) PromoterPort[ i ]--;
+
+		if( PomocGlobal[ i ] > 0 ) PomocGlobal[ i ]--;
+		
+		if( NewGlobal[ i ] > 0 ) NewGlobal[ i ]--;
+
+		if( antiCheatCS[ i ][ SpamChat ] > 0 ) antiCheatCS[ i ][ SpamChat ]--;
+
+		if( antiCheatCS[ i ][ SpamCommand ] > 0 ) antiCheatCS[ i ][ SpamCommand ]--;
+		
+		if( DropedGun[ i ] > 0 ) DropedGun[ i ]--;
+
+		CarDamageTimer( i );
+		
+		CheckWeapons( i );
+
+		CheckTeleports( i );
+
+		#if nerp_droga == 1
+		DrugCheck( i );
+		#endif
+
+		CallLocalFunction("AntiCheat", "i", i);
+
+		CellphoneCheck( i );
+
+		if( GetFactionType( i ) != ORG_TIP_PD && !IsPlayerInAnyVehicle( i ) )
+		{
+
+			if( GetPlayerWeapon( i ) >= 24 && GetPlayerWeapon( i ) <= 40 )
+			{
+
+				if( Javno3( i ) || Javno4( i ) || Javno5( i ) || Javno6( i ) || Javno7( i ) || Javno8( i ) || IsPlayerInRangeOfPoint( i, 10, 1133.5189, -936.0316, 47.7939 ) ) {
+
+					if( antiCheatCS[ i ][ ArmedWeapon ] < 3 )
+					{
+						SetPlayerArmedWeapon( i, 0 );
+						antiCheatCS[ i ][ ArmedWeapon ] ++;
+						SendClientMessageEx( i, ANTICHEAT, "Oruzije se ne moze koristiti na javnim mjestima! Upozorenje %d/3.", antiCheatCS[ i ][ ArmedWeapon ] );
+					}
+					if( antiCheatCS[ i ][ ArmedWeapon ] == 3 )
+					{
+					
+						SendClientMessageEx( i, ANTICHEAT, "Oruzije se ne moze koristiti na javnim mjestima! Upozorenje %d/3.", antiCheatCS[ i ][ ArmedWeapon ] );
+						antiCheatCS[ i ][ ArmedWeapon ] = 0;
+						announcement( i, "~r~Oruzje vam je oduzeto!", 2500, 1 );
+						ResetAllWeapons( i );
+						return 1;
+					}
+				}
+				if( Snow_F[ i ] )
+				{
+				
+					if( antiCheatCS[ i ][ ArmedWeapon ] < 3 )
+					{
+						SetPlayerArmedWeapon( i, 0 );
+						antiCheatCS[ i ][ ArmedWeapon ] ++;
+						SendClientMessageEx( i, ANTICHEAT, "Oruzije se ne moze koristiti u areni za grudvanje! Upozorenje %d/3.", antiCheatCS[ i ][ ArmedWeapon ] );
+					}
+					if( antiCheatCS[ i ][ ArmedWeapon ] == 3 )
+					{
+
+						SendClientMessageEx( i, ANTICHEAT, "Oruzije se ne moze koristiti u areni za grudvanje! Upozorenje %d/3.", antiCheatCS[ i ][ ArmedWeapon ] );
+						antiCheatCS[ i ][ ArmedWeapon ] = 0;
+						announcement( i, "~r~Oruzje vam je oduzeto!", 2500, 1 );
+						ResetAllWeapons( i );
+						return 1;
+					}
+				}
+			}
+		}
+
+		if( TrashLimit[ i ] != 0 )
+		{
+			TrashLimit[ i ]--;
+		}
+
+		if( Odbrojavanje[ i ] != 0 )
+		{
+			format( globalstring, sizeof( globalstring ), "~w~Pricekajte, Vrijeme: ~r~%d", Odbrojavanje[ i ] );
+			PlayerTextDrawSetString( i, PVreme[ i ], globalstring );
+			Odbrojavanje[ i ]--;
+		}
+
+		if( ( id = Boombox_Nearest(i)) != INVALID_PLAYER_ID && Boombox[ i ] != id && strlen (BoomboxInfo[ id ][ boomboxURL ] ) && !IsPlayerInAnyVehicle( i ) )
+		{
+			new boomboxstr[ 128 ];
+			strunpack(boomboxstr, BoomboxInfo[ id ][ boomboxURL ] );
+			Boombox[ i ] = id;
+
+			StopAudioStreamForPlayer( i );
+			PlayAudioStreamForPlayer( i, boomboxstr, BoomboxInfo[ id ][ boomboxPos ][ 0 ], BoomboxInfo[ id ][ boomboxPos ][ 1 ], BoomboxInfo[ id ][ boomboxPos ][ 2 ], 30.0, 1);
+		}
+		else if( Boombox[ i ] != INVALID_PLAYER_ID && !IsPlayerInRangeOfPoint( i, 30.0, BoomboxInfo[ Boombox[ i ] ][ boomboxPos ][ 0 ], BoomboxInfo[ Boombox[ i ] ][ boomboxPos ][ 1 ], BoomboxInfo[ Boombox[ i ] ][boomboxPos][ 2 ] ) )
+		{
+			Boombox[ i ] = INVALID_PLAYER_ID;
+			StopAudioStreamForPlayer(i);
+		}
+
+		if( PlayerInfo[ i ][ xLevel ] < 3 && GetFactionType( i ) != ORG_TIP_PD)
+		{
+			for( new g = 0; g < 13; g++)
+			{
+				new sweapon, sammo;
+				GetPlayerWeaponData( i, g, sweapon, sammo );
+				if( sweapon != 0 && sammo != 0 )
+				{
+					ResetAllWeapons( i );
+					announcement( i, "~w~Ti si Level 1-2 ne mozes~n~~y~posedovati oruzje!", 5000, 3 );
+					format( globalstring, sizeof( globalstring ), "{FF0000}| AC |:"col_white" Oruzje || "SERVERBOJA_AQUA"%s[ID: %d] "col_white"| Level manji od 3 !", ImeIgraca( i ), i );
+					AdminPoruka( ANTICHEAT, globalstring );
+				}
+			}
+		}
+		
+
+
+		
+		if( IsPlayerInRangeOfPoint( i, 10.0, 1862.0596, -1380.8535, 13.4618 ) )
+		{
+			if( PlayerInfo[ i ][ xAdmin ] >= 6 || PlayerInfo[ i ][ xPosao ] == POSAO_GRADJEVINAR )
+			{
+				MoveDynamicObject( gradjkapija, 1861.8921, -1376.4141, 12.5581, 2.0 );
+				SetTimer( "GradjevinarKapijaClose", 7000, 0 );
+			}
+		}
+		
+		if( GetPlayerSurfingVehicleID( i ) != INVALID_VEHICLE_ID &&
+			!AdminDuty[ i ] &&
+			GetSpeed( i ) > 50 &&
+			!IsVehicleBrod( GetPlayerSurfingVehicleID( i ) ) &&
+			GetVehicleModel( GetPlayerSurfingVehicleID( i ) ) != 406 &&
+			GetVehicleModel( GetPlayerSurfingVehicleID( i ) ) != 422 &&
+			GetVehicleModel( GetPlayerSurfingVehicleID( i ) ) != 433 ) {
+			
+			new Float:slx, Float:sly, Float:slz;
+			GetPlayerPos( i, slx, sly, slz );
+			SetPlayerPos( i, slx, sly, slz+5 );
+			
+			SendClientMessagee( i, SVETLOCRVENA, "{FF0000}| AC |:"col_white" Ne smijes se voziti na autu!");
+		}
+
+	}
+	return 1;
+}
+
+
+
+//------------------------------------------------------------------------------
+public DRKANJE(playerid) {
+	SendSrwMessage(playerid, ""col_yelow"Promoter 'cooldown' je upravo uspjesno istekao - mozete postaviti novu reklamu!");
+	Reklamirao[playerid] = false;
+}
+
+
+VehRespawn();
+public VehRespawn()
+{
+	SetTimer( "RespawnCallGlobal", 60000, false );
+	for(new i; i < MAX_PLAYERS; i++) {
+	SendClientMessagee( i, -1, ""SERVERBOJA_AQUA"| RESPAWN | {FFFFFF}Pokrenuto je ponovno stvaranje svih vozila za jedan minut!" );
+	SendClientMessagee( i, -1, ""SERVERBOJA_AQUA"| RESPAWN | {FFFFFF}Udjite u svoja vozila ukoliko ne zelite da se ponovo vrati u prvobitni polozaj!" ); }
+	return 1;
+}
+//////////////////////////////////////////////////
+
+
+SendMSG(); public SendMSG()
+{
+	print("[ID - 1 TEST]: Poruka poslana - radnja uspesna!");
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		//if(PlayerInfo[playerid][xLevel] > 5 ) return 1;
+		//if(PlayerInfo[i][xAdmin] >= 1 ) return 1;
+		new randMSG = random(sizeof(RandomMSG));
+		new string[300];
+		format(string, sizeof(string), "[TUTORIJAL] {FFFFFF}%s", RandomMSG[randMSG]);
+		if(PlayerLogged[i]) SendClientMessage(i, tdboja, string);
+		//PlayerPlaySound(%0, 1052, 0.0, 0.0, 10.0);
+		if(PlayerLogged[i]) PlayerPlaySound(i,1057,0.0,0.0,10.0);
+	}
+	return 1;
+}
+SendMSG2(); public SendMSG2()
+{
+	print("[ID - 2 TEST]: Poruka poslana - radnja uspesna!");
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		//if(PlayerInfo[i][xAdmin] == 1339 ) return 1;
+		new randMSG2 = random(sizeof(RandomMSG2));
+		new string[300];
+		format(string, sizeof(string), ""SERVERBOJA_AQUA"REKREACIJA & SPORT | {FFFFFF}%s", RandomMSG2[randMSG2]);
+		if(PlayerLogged[i]) SendClientMessage(i, -1, string);
+	}	//SendClientMessageEx(playerid, -1, ""SERVERBOJA_AQUA"REKREACIJA & SPORT ||: {FFFFFF}%s", RandomMSG2[randMSG2]);
+	return 1;
+}
+SendMSG3(); public SendMSG3()
+{
+	print("[ID - 3 TEST]: Poruka poslana - radnja uspesna!");
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		//if( PlayerLogged[ playerid ] == false ) return SendClientMessage(playerid, -1, "");
+		//if(PlayerInfo[i][xAdmin] == 1339 ) return 1;
+		new randMSG3 = random(sizeof(RandomMSG3));
+		new string[300];
+		format(string, sizeof(string), "[VIJESTI] "SERVERBOJA_SIVA"%s", RandomMSG3[randMSG3]);
+		if(PlayerLogged[i]) SendClientMessage(i, tdboja, string);
+	}//SendClientMessageEx(playerid, -1, ""SERVERBOJA_SC"|| IZVANREDNE VIJESTI ||: "SERVERBOJA_SIVA"%s", RandomMSG3[randMSG3]);
+	return 1;
+}
+SendMSG4(); public SendMSG4()
+{
+	print("[ID - 4 TEST]: Poruka poslana - radnja uspesna!");
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		new randMSG4 = random(sizeof(RandomMSG4));
+		new string[300];
+		format(string, sizeof(string), ""col_white"[INFO] %s", RandomMSG4[randMSG4]);
+		if(PlayerLogged[i]) SendClientMessage(i, -1, string);
+		//SendClientMessageEx(playerid, -1, ""SERVERBOJA_CRVENA"[ MODERATOR CG:RPa ] - "SERVERBOJA_ZELENA"%s", RandomMSG4[randMSG4]);
+	}
+	return 1;
+}
+SendMSG5(); public SendMSG5()
+{
+	print("[ID - 5 TEST]: Poruka poslana - radnja uspesna!");
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		new randMSG5 = random(sizeof(RandomMSG5));
+		new string[300];
+		format(string, sizeof(string), ""SERVERBOJA_SIVA"%s", RandomMSG5[randMSG5]);
+		if(PlayerLogged[i]) SendClientMessage(i, -1, string);
+		//SendClientMessageEx(playerid, -1, ""SERVERBOJA_ZUTA"REKLAME NA RADIJU ||: "SERVERBOJA_SIVA"%s", RandomMSG5[randMSG5]);
+
+	}
+	return 1;
+}
+
+
+forward VehicleParkTimer( parkID, vehicleid );
+public VehicleParkTimer( parkID, vehicleid ) {
+
+	if( vehicleid != INVALID_VEHICLE_ID && Parked[ vehicleid ] != -1 ) {
+	
+		ParkingPlaces[ parkID ][ Parked[ vehicleid ] ][ parkTaken ] = false;
+	
+		Parked[ vehicleid ] = -1;
+		Dimi_KillTimer( ParkingTime[ vehicleid ] );
+
+		new TmpZone[ MAX_ZONE_NAME ];
+		GetVehicleZone( vehicleid, TmpZone, sizeof( TmpZone ) );
+
+		for( new id = 1; id < MAX_ORG; id++) {
+
+			if( OI[ id ][ oTip ] == ORG_TIP_PS ) {
+
+				format( globalstring, sizeof( globalstring ), ""col_sanm"[PARKING SERVIS]"col_white"Vozilu je isteklo mesto za parking u ulici "col_sanm"%s.", TmpZone);
+				OrgPoruka( id, -1, globalstring );
+			}
+		}
+	}
+
+	return 1;
+}
+
+
+//////////////////////////////////
+
+
+Spectator(); public Spectator()
+{
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		if( Spectate[ i ] > -1 && Spectate[ i ] < 500 )
+		{
+			new targetid = Spectate[ i ];
+
+			if( IsPlayerConnected( targetid ) )
+			{
+				TogglePlayerSpectating( i, 1 );
+				if( PlayerInfo[ i ][ xAdmin ] >= 1 || PlayerInfo[ i ][ xHelper ] >= 1 )
+				{
+					if(!IsPlayerInAnyVehicle(targetid))
+					{
+						PlayerSpectatePlayer(i,targetid);
+					}
+					if(IsPlayerInAnyVehicle(targetid))
+					{
+						PlayerSpectateVehicle(i,GetPlayerVehicleID(targetid));
+					}
+					UpdateSpecTD(i, targetid);
+					SetPlayerInterior( i, GetPlayerInterior( targetid ) );
+					SetPlayerVirtualWorld( i, GetPlayerVirtualWorld( targetid ) );
+				}
+			}
+			if(!IsPlayerConnected(targetid))
+			{
+				WatchingTV{ i } = 0;
+				SpecTDControl(i, false);
+				TogglePlayerSpectating( i, 0 );
+				TogglePlayerControllable( i, true );
+				
+				PlayerPlaySound( i, 1145, 0.0, 0.0, 0.0);
+				announcement( i, "~w~Spec ~r~Iskljucen", 3000, 6 );
+				SendScreenMessage(Spectate[ i ], "Specani ste od strane staff teama.");
+				Spectate[ i ] = -1;
+			}
+		}
+	}
+	return 1;
+}
+/////////////////////////////
+
+//------------------------------------------------------------------------------
+PetnesTMinutesTimer(); public PetnesTMinutesTimer()
+{
+	#if nerp_droga == 1
+	for(new i; i < MAX_PLAYERS; i++) {
+		CarCheck( i );
+	}
+	#endif
+	
+	StartReaction( );
+	
+	SaveServerStats( );
+}
+//------------------------------------------------------------------------------
+OcistiChatNeulogovanim(); public OcistiChatNeulogovanim()
+{
+	for(new i; i < MAX_PLAYERS; i++)
+	{
+		if(IsPlayerConnected(i) && PlayerLogged[i] == false)
+		{
+			for(new x; x < 50; x++)
+			{
+				SendClientMessage(i,-1,"");
+			}
+		}
+	}
+	return 1;
+}
+//------------------------------------------------------------------------------
+FiveMinutesTimer(); public FiveMinutesTimer()
+{
+	#if nerp_droga == 1
+	for( new plants = 1; plants < MAX_PLANTS; plants++ )
+	{
+
+		if( DrogaStab[ plants ][ wPlanted ] == 1 )
+		   {
+
+			DrogaStab[ plants ][ wHoursPassed ]++;
+
+			if( DrogaStab[ plants ][ wHoursPassed ] <= 8 )
+			{
+				MoveDynamicObject( DrogaStab[ plants ][ wObjectID ], DrogaStab[ plants ][ Plantx ], DrogaStab[ plants ][Planty], DrogaStab[ plants ][Plantz]+0.2, 5 );
+				DrogaStab[ plants ][ Plantz ] += 0.2;
+			}
+
+			if( DrogaStab[ plants ][ wHoursPassed ] > 12 )
+			{
+
+				DrogaStab[ plants ][ Plantx ] = 0;
+				DrogaStab[ plants ][ Planty ] = 0;
+				DrogaStab[ plants ][ Plantz ] = 0;
+				DrogaStab[ plants ][ wType ] = 0;
+				DrogaStab[ plants ][ wPlanted ] = 0;
+				DrogaStab[ plants ][ wHoursPassed ] = 0;
+				strmid( DrogaStab[ plants ][ wOwner ], "Niko", 0, strlen( "Niko" ), 255);
+				DrogaStab[ plants ][ wViwo ] = 0;
+				DestroyDynamicObject( DrogaStab[ plants ][ wObjectID ] );
+			}
+		}
+	}
+	#endif
+	new Float:health;
+	for(new i; i < MAX_PLAYERS; i++) {
+	
+		if( IsPlayerConnected( i ) ) {
+			if( !AdminDuty[ i ] && antiCheatCS[ i ][ AFKMinute ] == 0 && !IsPlayerPaused( i ) ) {
+				new randomglad = random(3)+1;
+				new randomwc= random(4)+2;
+				if( PlayerInfo[ i ][ xHunger ] < 100 )
+					PlayerInfo[ i ][ xHunger ] += randomglad;
+					
+				if( PlayerInfo[ i ][ xToilet ] < 100 )
+					PlayerInfo[ i ][ xToilet ] += randomwc;
+
+				new stringic[ 20 ];
+				format( stringic, sizeof( stringic ), "%d", PlayerInfo[ i ][ xHunger ] );
+				PlayerTextDrawSetString( i, GladIgraca[ i ], stringic );
+				
+				format( stringic, sizeof( stringic ), "%d", PlayerInfo[ i ][ xToilet ] );
+				PlayerTextDrawSetString( i, WcIgraca[ i ], stringic );
+
+				GetPlayerHealth( i, health );
+				//if( PlayerInfo[ i ][ xHunger ] > 99 )//moguc bug moguc bag
+				 //   Dimi_SetPlayerHealth( i, health - 5.0 );
+					
+				//if( PlayerInfo[ i ][ xToilet ] > 99 )
+				//	Dimi_SetPlayerHealth( i, health - 5.0 );
+			}
+		}
+	}
 }

@@ -14,6 +14,9 @@
  *                   *
  */
 
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
 
 //////////////VERZIJA/////////////////
 

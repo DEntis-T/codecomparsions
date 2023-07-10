@@ -5,14 +5,18 @@
  *____________________________________*
  *                             *
  * Verzija: 2.4    *
- *                             *
- * Developer: DentisT_and_Brace
- *               *
- * Zadnji update: 22.01.2021      *
- *
- * Mapper: Mata | Vlasnik: Makso          *
- *                   *
- */
+*                             *
+* Developer: DentisT_and_Brace
+*               *
+* Zadnji update: 22.01.2021      *
+*
+* Mapper: Mata | Vlasnik: Makso          *
+*                   *
+*/
+
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
 
 CreatePickupsAnd3Ds( ) 
 {

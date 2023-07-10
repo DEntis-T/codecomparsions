@@ -2,17 +2,21 @@
  * DOBRODOSLI NAM NA...       *
  * ------------- Nova Era RolePlay!
  *       *       =====================
- *____________________________________*
- *                             *
- * Verzija: 2.4    *
- *                             *
- * Developer: DentisT_and_Brace
- *               *
- * Zadnji update: 22.01.2021      *
- *
- * Mapper: Mata | Vlasnik: Makso          *
- *                   *
- */
+*____________________________________*
+*                             *
+* Verzija: 2.4    *
+*                             *
+* Developer: DentisT_and_Brace
+*               *
+* Zadnji update: 22.01.2021      *
+*
+* Mapper: Mata | Vlasnik: Makso          *
+*                   *
+*/
+
+#if INCLUDE_NERP_MODULES == 0
+	#endinput
+#endif
 
 
 ///////KONST////////////
